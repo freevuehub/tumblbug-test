@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link, Route, Redirect } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import {
   ProfilePage,
   AccountPage,
