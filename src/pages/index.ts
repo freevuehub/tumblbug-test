@@ -1,0 +1,6 @@
+export { default as HomePage } from './Home'
+export { default as ProfilePage } from './Profile'
+export { default as AccountPage } from './Account'
+export { default as PaymethodPage } from './Paymethod'
+export { default as AddressPage } from './Address'
+export { default as NotificationPage } from './Notification'
