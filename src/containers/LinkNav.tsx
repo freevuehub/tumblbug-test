@@ -18,7 +18,6 @@ const mapStateToProps = (state: StoreState) => {
 class LinkNav extends React.PureComponent<TypeProps> {
   render(): React.ReactElement {
     const { list } = this.props
-    console.log(this)
 
     return (
       <ul className="link-nav">

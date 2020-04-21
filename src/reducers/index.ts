@@ -1,3 +1,5 @@
+import { ActionType, getType } from 'typesafe-actions'
+import * as Actions from '../actions'
 import { StoreState } from '../types'
 
 const InitializeState: StoreState = {
@@ -12,11 +14,18 @@ const InitializeState: StoreState = {
   },
 }
 
-function Reducer(state: StoreState = InitializeState, action: any): StoreState {
+export default (
+  state: StoreState = InitializeState,
+  action: ActionType<typeof Actions>,
+  // action: any,
+): StoreState => {
   switch (action.type) {
+    case getType(Actions.fetchAddress):
+      return {
+        ...state,
+        ...action.payload,
+      }
     default:
       return Object.assign({}, state)
   }
 }
-
-export default Reducer
