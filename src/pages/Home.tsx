@@ -1,5 +1,10 @@
 import React from 'react'
-import { Route, Redirect } from 'react-router-dom'
+import {
+  Route,
+  Redirect,
+  withRouter,
+  RouteComponentProps,
+} from 'react-router-dom'
 import {
   ProfilePage,
   AccountPage,
@@ -8,13 +13,7 @@ import {
   NotificationPage,
 } from '../pages'
 
-interface TypeProps {
-  location: {
-    pathname: string
-  }
-}
-
-const Home: React.FC<TypeProps> = (props: TypeProps) => {
+const Home: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
   const { pathname } = props.location
 
   return pathname === '/' ? (
@@ -30,4 +29,4 @@ const Home: React.FC<TypeProps> = (props: TypeProps) => {
   )
 }
 
-export default Home
+export default withRouter(Home)

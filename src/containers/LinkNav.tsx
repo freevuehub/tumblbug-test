@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, RouteComponentProps } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { StoreState } from '../types'
 
@@ -18,6 +18,7 @@ const mapStateToProps = (state: StoreState) => {
 class LinkNav extends React.PureComponent<TypeProps> {
   render(): React.ReactElement {
     const { list } = this.props
+    console.log(this)
 
     return (
       <ul className="link-nav">

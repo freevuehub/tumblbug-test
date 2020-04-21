@@ -34,16 +34,16 @@ li {
 }
 
 .app {
+  padding-top: ratio(26);
+
   .header-title {
     @include font(ratio(33), 700, #000);
 
-    margin-top: ratio(26);
     padding-left: ratio(28);
 
     @media screen and (min-width: 600px) {
       @include font(36px, 700, #000);
 
-      margin-top: 50px;
       padding-left: 42px;
     }
   }
@@ -108,5 +108,9 @@ li {
         }
       }
     }
+  }
+
+  @media screen and (min-width: 600px) {
+    padding-top: 50px;
   }
 }

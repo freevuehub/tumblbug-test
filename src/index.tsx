@@ -12,9 +12,10 @@ const store = createStore(reducers)
 
 ReactDOM.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    {/* <React.StrictMode>
+      
+    </React.StrictMode> */}
+    <App />
   </Provider>,
   rootElement,
 )
