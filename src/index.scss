@@ -80,20 +80,33 @@ li {
           @include font(20px, 400, #999);
 
           &:hover {
-            @include font(20px, 700, #3e3e3e);
+            @include font(20px, 600, #3e3e3e);
           }
         }
-      }
-    }
-
-    @media screen and (min-width: 1024px) {
-      li {
-        a {}
       }
     }
   }
 
   .container {
     padding-top: ratio(55);
+
+    .content {
+      .header {
+        display: flex;
+        padding: 0 ratio(20);
+        align-items: flex-end;
+
+        h2 {
+          @include font(ratio(20), 600);
+        }
+
+        button {
+          @include font(ratio(16), 400, #4ea3f8);
+
+          margin-left: auto;
+          text-decoration: underline;
+        }
+      }
+    }
   }
 }

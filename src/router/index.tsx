@@ -7,7 +7,8 @@ const Root: React.FC = () => (
   <div className="app">
     <h1 className="header-title">설정</h1>
     <BrowserRouter>
-      <LinkNav
+      <LinkNav />
+      {/* <LinkNav
         list={[
           { path: '/profile', name: '프로필' },
           { path: '/account', name: '계정' },
@@ -15,7 +16,7 @@ const Root: React.FC = () => (
           { path: '/address', name: '배송지' },
           { path: '/notification', name: '알림' },
         ]}
-      />
+      /> */}
       <Switch>
         <Route path="/" component={HomePage} />
       </Switch>
