@@ -5,12 +5,14 @@ export interface NavStoreState {
   }[]
 }
 
+export interface AddressItem {
+  id: number
+  postnumber: number
+  name: string
+  address: string
+}
+
 export interface AddressStoreState {
-  addresses: {
-    id: number
-    postnumber: number
-    name: string
-    address: string
-  }[]
+  addresses: AddressItem[]
   default: number
 }

@@ -23,6 +23,12 @@ li {
   list-style: none;
 }
 
+button {
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+}
+
 @function ratio($num) {
   @return $num / 360 * 100vw;
 }
@@ -105,6 +111,37 @@ li {
 
           margin-left: auto;
           text-decoration: underline;
+        }
+      }
+
+      .address-list {
+        li {
+          padding: ratio(23) ratio(20);
+          display: flex;
+          align-items: center;
+
+          .info {
+            h5 {
+              @include font(ratio(14), 600, #3e3e3e);
+
+              margin-bottom: ratio(6);
+            }
+
+            p {
+              @include font(ratio(12), 400, #989898);
+            }
+          }
+
+          button {
+            margin-left: auto;
+            display: block;
+            width: ratio(25);
+            height: ratio(25);
+            border-radius: 50%;
+            border: 1px solid #e1e1e1;
+            color: #5e5e5e;
+            line-height: ratio(23);
+          }
         }
       }
     }
