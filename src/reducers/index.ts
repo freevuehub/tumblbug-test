@@ -21,6 +21,7 @@ export default (
 ): StoreState => {
   switch (action.type) {
     case getType(Actions.fetchAddress):
+      console.log(action)
       return {
         ...state,
         ...action.payload,

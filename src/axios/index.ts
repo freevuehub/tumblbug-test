@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export function fetchAddress(): Promise<{}> {
+export function loadAddress(): Promise<{}> {
   return new Promise((resolve, reject) => {
     axios
       .get('../static/addresses.json')

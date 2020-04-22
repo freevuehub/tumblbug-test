@@ -1,15 +1,14 @@
 import React from 'react'
-import { fetchAddress } from '../axios'
+import { connect } from 'react-redux'
+import { fetchAddress } from '../actions'
 
-class Address extends React.PureComponent {
-  async componentDidMount() {
-    const { data }: any = await fetchAddress()
+interface TypeProps {
+  fetchAddress: Function
+}
 
-    console.log(data)
-    this.setState({
-      ...this.state,
-      addressList: data.address,
-    })
+class Address extends React.PureComponent<TypeProps> {
+  componentDidMount() {
+    this.props.fetchAddress()
   }
 
   onAddressAdd() {
@@ -17,7 +16,6 @@ class Address extends React.PureComponent {
   }
 
   render(): React.ReactElement {
-    console.log(this)
     return (
       <div className="content">
         <div className="header">
@@ -29,4 +27,13 @@ class Address extends React.PureComponent {
   }
 }
 
-export default Address
+export default connect(
+  (state) => {
+    return {
+      list: state,
+    }
+  },
+  (dispatch) => ({
+    fetchAddress: () => dispatch(fetchAddress('')),
+  }),
+)(Address)
