@@ -40,6 +40,7 @@ button {
 }
 
 .app {
+  background-color: #f0f0f2;
   padding-top: ratio(26);
 
   .header-title {
@@ -59,7 +60,6 @@ button {
     display: flex;
     padding: 0 ratio(28);
     justify-content: space-between;
-    border-bottom: ratio(2) solid #cecece;
 
     li {
       a {
@@ -77,7 +77,6 @@ button {
       margin-top: 60px;
       justify-content: flex-start;
       padding: 0 42px;
-      border-bottom-width: 1px;
 
       li {
         margin-right: 35px;
@@ -116,11 +115,16 @@ button {
 
       .address-list {
         li {
+          margin: ratio(30) ratio(20) 0;
           padding: ratio(23) ratio(20);
           display: flex;
           align-items: center;
+          background: #f0f0f2;
+          box-shadow: 5px 5px 10px #ccccce, -5px -5px 10px #ffffff;
+          border-radius: ratio(20);
 
           .info {
+            max-width: calc(100% - 30px);
             h5 {
               @include font(ratio(14), 600, #3e3e3e);
 
@@ -138,11 +142,22 @@ button {
             width: ratio(25);
             height: ratio(25);
             border-radius: 50%;
-            border: 1px solid #e1e1e1;
             color: #5e5e5e;
             line-height: ratio(23);
+            background: linear-gradient(145deg, #ffffff, #d8d8da);
+            box-shadow: 3px 3px 5px #ccccce, -3px -3px 5px #ffffff;
           }
         }
+      }
+      .more-btn {
+        display: block;
+        margin: 0 auto;
+      }
+      .notice {
+        border: 1px solid #e1e1e1;
+        border-radius: ratio(8);
+        margin: 0 ratio(20);
+        padding: ratio(20);
       }
     }
   }
