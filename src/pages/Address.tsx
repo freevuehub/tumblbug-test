@@ -1,14 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchAddress } from '../actions'
+import { fetchAddress } from '../reducers/Address'
+import { loadAddress } from '../axios'
+import { AddressStoreState } from '../types'
 
-interface TypeProps {
+interface TypeAddress {
+  Address: AddressStoreState
+}
+interface TypeProps extends TypeAddress {
   fetchAddress: Function
 }
 
 class Address extends React.PureComponent<TypeProps> {
-  componentDidMount() {
-    this.props.fetchAddress()
+  async componentDidMount() {
+    const { fetchAddress } = this.props
+    const { data }: any = await loadAddress()
+
+    fetchAddress(data)
   }
 
   onAddressAdd() {
@@ -16,24 +24,29 @@ class Address extends React.PureComponent<TypeProps> {
   }
 
   render(): React.ReactElement {
+    const { Address } = this.props
+
     return (
       <div className="content">
         <div className="header">
           <h2>등록된 배송지</h2>
           <button onClick={this.onAddressAdd}>+ 추가</button>
         </div>
+        <ul>
+          {Address.addresses.map((item: any) => (
+            <li key={item.id}>{item.address}</li>
+          ))}
+        </ul>
       </div>
     )
   }
 }
 
 export default connect(
-  (state) => {
-    return {
-      list: state,
-    }
-  },
+  ({ Address }: TypeAddress) => ({
+    Address,
+  }),
   (dispatch) => ({
-    fetchAddress: () => dispatch(fetchAddress('')),
+    fetchAddress: (data: AddressStoreState) => dispatch(fetchAddress(data)),
   }),
 )(Address)
