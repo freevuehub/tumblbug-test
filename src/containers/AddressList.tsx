@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addViewCount } from '../reducers/Address'
 import { AddressStoreState, AddressItem } from '../types'
-import { AddressListItem, AddressSettingPop } from '../components'
+import { Maybe, AddressListItem, AddressSettingPop } from '../components'
 
 interface TypeProps {
   Address: AddressStoreState
@@ -79,12 +79,14 @@ class AddressList extends React.Component<TypeProps, TypeState> {
             </li>
           ))}
         </ul>
-        {popView && <AddressSettingPop popStyle={popStyle} />}
-        {moreBtnView && (
+        <Maybe if={popView}>
+          <AddressSettingPop popStyle={popStyle} />
+        </Maybe>
+        <Maybe if={moreBtnView}>
           <button className="more-btn" onClick={(event) => this.onMoreAddress(event)}>
             + 더 보기
           </button>
-        )}
+        </Maybe>
       </>
     )
   }
