@@ -1,7 +1,7 @@
 import React from 'react'
 
 interface TypeProps {
-  popStyle: {
+  style: {
     top: number
     left: number
   }
@@ -9,11 +9,11 @@ interface TypeProps {
 }
 
 const AddressTooltip: React.FC<TypeProps> = (props: TypeProps) => {
-  const { popStyle, onChange } = props
+  const { style, onChange } = props
 
   return (
     <>
-      <div style={popStyle} className="address-tooltip">
+      <div style={style} className="address-tooltip">
         <button onClick={(event): void => onChange(event)}>기본 배송지 설정</button>
         <button>삭제</button>
       </div>

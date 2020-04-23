@@ -5,7 +5,6 @@ interface TypeProps {
   item: AddressItem
   defaultId: number
   onClick: Function
-  onBlur: Function
 }
 
 const AddressListItem: React.FC<TypeProps> = (props: TypeProps) => {
