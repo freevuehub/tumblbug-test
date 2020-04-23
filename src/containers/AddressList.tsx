@@ -31,20 +31,10 @@ class AddressList extends React.Component<TypeProps, TypeState> {
   onSettingClick(event: any, id: number) {
     event.preventDefault()
 
-    if (this.state.popView) {
-      if (this.state.addressId === id) {
-        this.setState({
-          popView: false,
-        })
-      } else {
-        this.setState({
-          addressId: id,
-          popStyle: {
-            top: event.target.offsetTop,
-            left: event.target.offsetLeft,
-          },
-        })
-      }
+    if (this.state.popView && this.state.addressId === id) {
+      this.setState({
+        popView: false,
+      })
     } else {
       this.setState({
         popView: true,
