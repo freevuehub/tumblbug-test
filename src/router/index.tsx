@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { HomePage } from '../pages'
-import { LinkNav } from '../containers'
+import { LinkNav, Toast } from '../containers'
 
 const Root: React.FC = () => {
   return (
@@ -13,6 +13,7 @@ const Root: React.FC = () => {
           <Route path="/" component={HomePage} />
         </Switch>
       </BrowserRouter>
+      <Toast />
     </div>
   )
 }

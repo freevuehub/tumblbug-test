@@ -18,3 +18,15 @@ export interface AddressStoreState {
   default: number
   viewCount: number
 }
+
+export interface ToastItem {
+  text: string
+  view: boolean
+  time?: string
+  type: string
+  id: number
+}
+
+export interface ToastStoreState {
+  list: ToastItem[]
+}

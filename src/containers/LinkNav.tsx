@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { NavStoreState, NavItem } from '../types'
 
-interface TypeProps {
+interface TypeHooks {
   Nav: NavStoreState
 }
 
 const LinkNav: React.FC = () => {
-  const { list } = useSelector(({ Nav }: TypeProps) => Nav)
+  const { list } = useSelector(({ Nav }: TypeHooks) => Nav)
 
   return (
     <ul className="link-nav">
