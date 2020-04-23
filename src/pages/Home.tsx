@@ -1,17 +1,6 @@
 import React from 'react'
-import {
-  Route,
-  Redirect,
-  withRouter,
-  RouteComponentProps,
-} from 'react-router-dom'
-import {
-  ProfilePage,
-  AccountPage,
-  PaymethodPage,
-  AddressPage,
-  NotificationPage,
-} from '../pages'
+import { Route, Redirect, withRouter, RouteComponentProps } from 'react-router-dom'
+import { ProfilePage, AccountPage, PaymethodPage, AddressPage, NotificationPage } from '../pages'
 
 const Home: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
   const { pathname } = props.location

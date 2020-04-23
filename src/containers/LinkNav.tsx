@@ -12,6 +12,7 @@ interface TypeProps {
 
 class LinkNav extends React.PureComponent<TypeProps> {
   render(): React.ReactElement {
+    console.log(this.props)
     const { list } = this.props
 
     return (
