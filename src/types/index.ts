@@ -15,4 +15,5 @@ export interface AddressItem {
 export interface AddressStoreState {
   addresses: AddressItem[]
   default: number
+  viewCount: number
 }

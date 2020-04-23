@@ -2,9 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { AddressStoreState, AddressItem } from '../types'
 import { AddressListItem } from '../components'
+import { addViewCount } from '../reducers/Address'
 
 interface TypeProps {
   Address: AddressStoreState
+  addViewCount: Function
 }
 
 interface TypeState {
@@ -55,13 +57,19 @@ class AddressList extends React.Component<TypeProps, TypeState> {
     }
   }
 
+  onMoreAddress(event: any) {
+    event.preventDefault()
+
+    this.props.addViewCount()
+  }
+
   render(): React.ReactElement {
     const { Address } = this.props
 
     return (
       <>
         <ul className="address-list">
-          {Address.addresses.slice(0, 5).map((item: AddressItem) => (
+          {Address.addresses.slice(0, Address.viewCount).map((item: AddressItem) => (
             <li key={item.id}>
               <AddressListItem item={item} defaultId={Address.default} onClick={(event: any, id: number) => this.onSettingClick(event, id)} />
             </li>
@@ -73,11 +81,19 @@ class AddressList extends React.Component<TypeProps, TypeState> {
             <button>삭제</button>
           </div>
         )}
+        <button className="more-btn" onClick={(event) => this.onMoreAddress(event)}>
+          + 더 보기
+        </button>
       </>
     )
   }
 }
 
-export default connect(({ Address }: TypeProps) => ({
-  Address,
-}))(AddressList)
+export default connect(
+  ({ Address }: TypeProps) => ({
+    Address,
+  }),
+  (dispatch) => ({
+    addViewCount: () => dispatch(addViewCount()),
+  }),
+)(AddressList)

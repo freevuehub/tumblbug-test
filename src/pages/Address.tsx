@@ -21,8 +21,6 @@ class Address extends React.PureComponent<TypeProps> {
 
     data.addresses.splice(idx, 1)
 
-    // console.log(defaultItem, idx, )
-
     fetchAddress({ ...data, addresses: [defaultItem, ...data.addresses] })
   }
 
@@ -38,7 +36,6 @@ class Address extends React.PureComponent<TypeProps> {
           <button onClick={this.onAddressAdd}>+ 추가</button>
         </div>
         <AddressList />
-        <button className="more-btn">+ 더 보기</button>
         <div className="notice">
           <h4>배송지를 삭제하면 예약된 후원의 배송지 정보도 삭제되나요?</h4>
           <p>
