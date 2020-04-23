@@ -28,8 +28,10 @@ class AddressList extends React.Component<TypeProps, TypeState> {
     addressId: 0,
   }
 
-  onSettingClick(event: any, id: number) {
+  onSettingClick(event: React.MouseEvent, id: number): void {
     event.preventDefault()
+
+    const { offsetTop, offsetLeft } = event.target as HTMLElement
 
     if (this.state.popView && this.state.addressId === id) {
       this.setState({
@@ -39,21 +41,21 @@ class AddressList extends React.Component<TypeProps, TypeState> {
       this.setState({
         popView: true,
         popStyle: {
-          top: event.target.offsetTop,
-          left: event.target.offsetLeft,
+          top: offsetTop,
+          left: offsetLeft,
         },
         addressId: id,
       })
     }
   }
 
-  onPopClose() {
+  onPopClose(): void {
     this.setState({
       popView: false,
     })
   }
 
-  onMoreAddress(event: any) {
+  onMoreAddress(event: React.MouseEvent): void {
     event.preventDefault()
 
     this.props.addViewCount()
@@ -73,8 +75,8 @@ class AddressList extends React.Component<TypeProps, TypeState> {
               <AddressListItem
                 item={item}
                 defaultId={Address.default}
-                onBlur={() => this.onPopClose()}
-                onClick={(event: any, id: number) => this.onSettingClick(event, id)}
+                onBlur={(): void => this.onPopClose()}
+                onClick={(event: React.MouseEvent, id: number): void => this.onSettingClick(event, id)}
               />
             </li>
           ))}
@@ -83,7 +85,7 @@ class AddressList extends React.Component<TypeProps, TypeState> {
           <AddressSettingPop popStyle={popStyle} />
         </Maybe>
         <Maybe if={moreBtnView}>
-          <button className="more-btn" onClick={(event) => this.onMoreAddress(event)}>
+          <button className="more-btn" onClick={(event): void => this.onMoreAddress(event)}>
             + 더 보기
           </button>
         </Maybe>

@@ -19,7 +19,7 @@ const AddressListItem: React.FC<TypeProps> = (props: TypeProps) => {
         </h5>
         <p>{item.address}</p>
       </div>
-      <button onBlur={() => onBlur()} onClick={(event) => onClick(event, item.id)}>
+      <button onBlur={(): void => onBlur()} onClick={(event): void => onClick(event, item.id)}>
         &sdot;&sdot;&sdot;
       </button>
     </>

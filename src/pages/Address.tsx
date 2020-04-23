@@ -47,7 +47,7 @@ class Address extends React.PureComponent<TypeProps, TypeState> {
         <div className="content">
           <div className="header">
             <h2>등록된 배송지</h2>
-            <button onClick={(event: React.MouseEvent): void => this.onAddressAdd(event)}>+ 추가</button>
+            <button onClick={(event): void => this.onAddressAdd(event)}>+ 추가</button>
           </div>
           <AddressList />
           <div className="notice">
