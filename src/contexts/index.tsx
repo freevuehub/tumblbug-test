@@ -1,14 +1,20 @@
 import React, { createContext, Dispatch, useReducer, useContext } from 'react'
 
+export interface TypeConfirm {
+  text: string
+  view: boolean
+  confirm: boolean
+}
+
 export interface TypeState {
-  confirmView: boolean
+  confirmInfo: TypeConfirm
   tooltipView: boolean
 }
 
 export const SystemStateContext = createContext<TypeState | undefined>(undefined)
 
 type Action =
-  | { type: 'CONFIRM_ON_OFF'; payload: boolean }
+  | { type: 'CONFIRM_ON_OFF'; payload: TypeConfirm }
   | { type: 'TOOLTIP_ON_OFF'; payload: boolean }
 
 type TypeAction = Dispatch<Action>
@@ -20,7 +26,7 @@ function SystemReducer(state: TypeState, action: Action): TypeState {
     case 'CONFIRM_ON_OFF':
       return {
         ...state,
-        confirmView: action.payload,
+        confirmInfo: action.payload,
       }
     case 'TOOLTIP_ON_OFF':
       return {
@@ -34,7 +40,11 @@ function SystemReducer(state: TypeState, action: Action): TypeState {
 
 export function SystemProvider(props: { children: React.ReactNode }): React.ReactElement {
   const [state, dispatch] = useReducer(SystemReducer, {
-    confirmView: false,
+    confirmInfo: {
+      text: '',
+      view: false,
+      confirm: false,
+    },
     tooltipView: false,
   })
 

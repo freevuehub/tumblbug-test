@@ -39,3 +39,50 @@
     margin-left: ratio(8);
   }
 }
+
+.confirm {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(118, 118, 118, 0.8);
+  display: flex;
+  align-items: center;
+  z-index: 21;
+
+  .wrap {
+    width: 100%;
+    border-radius: ratio(8);
+    margin: 0 ratio(24);
+    background-color: #F0F0F2;
+
+    .description {
+      padding: ratio(44) 0;
+
+      p {
+        @include font(ratio(18), 600, #2f2f2f);
+
+        text-align: center;
+      }
+    }
+
+    .remote {
+      display: flex;
+      flex-wrap: wrap;
+      border-top: 1px solid #979797;
+
+      button {
+        @include font(ratio(14), 600);
+
+        width: 50%;
+        height: ratio(65);
+
+        &:first-child {
+          color: #ed635e;
+          border-right: 1px solid #979797;
+        }
+      }
+    }
+  }
+}

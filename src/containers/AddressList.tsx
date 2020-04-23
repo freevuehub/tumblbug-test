@@ -4,7 +4,7 @@ import { changeDefault } from '../reducers/Address'
 import { addToast } from '../reducers/Toast'
 import { useSystemState, useSystemDispatch } from '../contexts'
 import { AddressStoreState, AddressItem } from '../types'
-import { Maybe, AddressListItem, AddressTooltip, Confirm } from '../components'
+import { Maybe, AddressListItem, AddressTooltip } from '../components'
 
 interface TypeProps {
   Address: AddressStoreState
@@ -17,7 +17,7 @@ const AddressList: React.FC = () => {
   const { addresses, default: defaultId } = useSelector(({ Address }: TypeProps) => Address)
   const dispatch = useDispatch()
 
-  const { tooltipView } = useSystemState()
+  const { tooltipView, confirmInfo } = useSystemState()
   const systemDispatch = useSystemDispatch()
 
   const [count, setCount] = useState(5)
@@ -48,6 +48,19 @@ const AddressList: React.FC = () => {
       }),
     )
   }
+  const onAddressDelete = (event: React.MouseEvent): void => {
+    event.preventDefault()
+
+    systemDispatch({
+      type: 'CONFIRM_ON_OFF',
+      payload: {
+        ...confirmInfo,
+        text: '정말 삭제하시겠습니까?',
+        view: true,
+        confirm: false,
+      },
+    })
+  }
 
   return (
     <>
@@ -64,10 +77,11 @@ const AddressList: React.FC = () => {
         </button>
       </Maybe>
       <Maybe if={tooltipView}>
-        <AddressTooltip onChange={onDefaultAddressChange} style={style} />
-      </Maybe>
-      <Maybe if={true}>
-        <Confirm confirm={false}>정말 삭제하시겠습니까?</Confirm>
+        <AddressTooltip
+          style={style}
+          onChange={onDefaultAddressChange}
+          onDelete={onAddressDelete}
+        />
       </Maybe>
     </>
   )

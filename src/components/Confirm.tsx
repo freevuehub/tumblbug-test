@@ -1,24 +1,45 @@
 import React from 'react'
-import { useSystemState } from '../contexts'
+import Maybe from './Maybe'
+import { useSystemState, useSystemDispatch } from '../contexts'
 
-interface TypeProps {
-  children?: React.ReactNode
-  confirm: boolean
-}
+const Confirm: React.FC = () => {
+  const { confirmInfo } = useSystemState()
+  const dispatch = useSystemDispatch()
+  const onClose = (): void => {
+    dispatch({
+      type: 'CONFIRM_ON_OFF',
+      payload: {
+        ...confirmInfo,
+        view: false,
+      },
+    })
+  }
+  const onConfirm = (): void => {
+    dispatch({
+      type: 'CONFIRM_ON_OFF',
+      payload: {
+        ...confirmInfo,
+        confirm: true,
+      },
+    })
 
-const Confirm: React.FC<TypeProps> = (props: TypeProps) => {
-  const test = useSystemState()
+    onClose()
+  }
 
-  console.log(test)
   return (
-    <div className="confirm">
-      <div className="wrap">
-        <div className="description">
-          <p>{props.children}</p>
+    <Maybe if={confirmInfo.view}>
+      <div className="confirm" onClick={onClose}>
+        <div className="wrap">
+          <div className="description">
+            <p>{confirmInfo.text}</p>
+          </div>
+          <div className="remote">
+            <button onClick={onConfirm}>확인</button>
+            <button onClick={onClose}>취소</button>
+          </div>
         </div>
-        <div className="remote"></div>
       </div>
-    </div>
+    </Maybe>
   )
 }
 

@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { HomePage } from '../pages'
 import { LinkNav, Toast } from '../containers'
 import { useSystemDispatch } from '../contexts'
+import { Confirm } from '../components'
 
 const Root: React.FC = () => {
   const dispatch = useSystemDispatch()
@@ -13,6 +14,7 @@ const Root: React.FC = () => {
   return (
     <div className="app" onClick={onAppClick}>
       <Toast />
+      <Confirm />
       <h1 className="header-title">설정</h1>
       <BrowserRouter>
         <LinkNav />
