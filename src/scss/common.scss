@@ -22,8 +22,15 @@
     border-radius: ratio(4);
     width: ratio(20);
     height: ratio(20);
-    background: linear-gradient(145deg, #d8d8da, #ffffff);
+    border: ratio(2) solid #f0f0f2;
+    background: linear-gradient(145deg, #ffffff, #d8d8da);
     box-shadow: 2px 2px 4px #ccccce, -2px -2px 4px #ffffff;
+
+    &:checked {
+      border-radius: ratio(6);
+      background: linear-gradient(145deg, #e64e4e, #ff5d5d);
+      box-shadow: 2px 2px 4px #ccccce, -2px -2px 4px #ffffff;
+    }
   }
 
   label {
