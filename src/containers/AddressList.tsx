@@ -10,8 +10,6 @@ class AddressList extends React.PureComponent<TypeProps> {
   render(): React.ReactElement {
     const { Address } = this.props
 
-    console.log(Address)
-
     return (
       <ul className="address-list">
         {Address.addresses.slice(0, 5).map((item: AddressItem) => (
