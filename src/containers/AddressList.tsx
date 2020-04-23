@@ -14,7 +14,7 @@ class AddressList extends React.PureComponent<TypeProps> {
 
     return (
       <ul className="address-list">
-        {Address.addresses.map((item: AddressItem) => (
+        {Address.addresses.slice(0, 5).map((item: AddressItem) => (
           <li key={item.id}>
             <div className="info">
               <h5>[{item.postnumber}]</h5>
