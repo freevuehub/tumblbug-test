@@ -1,8 +1,9 @@
+export interface NavItem {
+  name: string
+  path: string
+}
 export interface NavStoreState {
-  list: {
-    name: string
-    path: string
-  }[]
+  list: NavItem[]
 }
 
 export interface AddressItem {

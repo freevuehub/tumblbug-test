@@ -1,23 +1,19 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, RouteComponentProps } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { NavStoreState } from '../types'
+import { NavStoreState, NavItem } from '../types'
 
 interface TypeProps {
-  list: {
-    name: string
-    path: string
-  }[]
+  Nav: NavStoreState
 }
 
 class LinkNav extends React.PureComponent<TypeProps> {
   render(): React.ReactElement {
-    console.log(this.props)
-    const { list } = this.props
+    const { Nav } = this.props
 
     return (
       <ul className="link-nav">
-        {list.map((item) => (
+        {Nav.list.map((item: NavItem) => (
           <li key={item.path}>
             <Link to={item.path}>{item.name}</Link>
           </li>
@@ -27,12 +23,4 @@ class LinkNav extends React.PureComponent<TypeProps> {
   }
 }
 
-interface TypeNav {
-  Nav: NavStoreState
-}
-
-export default connect(({ Nav }: TypeNav) => {
-  return {
-    list: Nav.list,
-  }
-})(LinkNav)
+export default connect(({ Nav }: TypeProps) => ({ Nav }))(LinkNav)
