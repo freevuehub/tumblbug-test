@@ -94,6 +94,7 @@ button {
 
   .container {
     padding-top: ratio(55);
+    padding-bottom: ratio(20);
 
     .content {
       .header {
@@ -150,13 +151,16 @@ button {
         }
       }
       .more-btn {
+        @include font(ratio(15), 600, #4ea3f8);
+
         display: block;
-        margin: 0 auto;
+        margin: ratio(20) auto;
+        text-decoration: underline;
       }
       .notice {
         border: 1px solid #e1e1e1;
         border-radius: ratio(8);
-        margin: ratio(20);
+        margin: ratio(20) ratio(20) 0;
         padding: ratio(20);
         h4 {
           @include font(ratio(15), 600, #3e3e3e);
