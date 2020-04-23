@@ -67,6 +67,7 @@ class AddressList extends React.Component<TypeProps, TypeState> {
     const { Address } = this.props
     const { popView, popStyle } = this.state
     const sliceList = Address.addresses.slice(0, Address.viewCount)
+    const moreBtnView = Address.addresses.length > sliceList.length
 
     return (
       <>
@@ -78,9 +79,11 @@ class AddressList extends React.Component<TypeProps, TypeState> {
           ))}
         </ul>
         {popView && <AddressSettingPop popStyle={popStyle} />}
-        <button className="more-btn" onClick={(event) => this.onMoreAddress(event)}>
-          + 더 보기
-        </button>
+        {moreBtnView && (
+          <button className="more-btn" onClick={(event) => this.onMoreAddress(event)}>
+            + 더 보기
+          </button>
+        )}
       </>
     )
   }
