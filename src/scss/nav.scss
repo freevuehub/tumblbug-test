@@ -1,0 +1,41 @@
+.link-nav {
+  margin-top: ratio(40);
+  display: flex;
+  padding: 0 ratio(28) ratio(5);
+
+  li {
+    margin-right: ratio(14);
+
+    a {
+      @include font(ratio(14), 400, #999);
+    }
+
+    &.on {
+      a {
+        @include font(ratio(20), 700, #3e3e3e);
+      }
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-top: 60px;
+    justify-content: flex-start;
+    padding: 0 42px;
+
+    li {
+      margin-right: 35px;
+
+      a {
+        @include font(20px, 400, #999);
+
+        &:hover {
+          @include font(20px, 600, #3e3e3e);
+        }
+      }
+    }
+  }
+}

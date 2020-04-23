@@ -1,0 +1,143 @@
+@import "./default.scss";
+@import "./tool.scss";
+
+.app {
+  background-color: #f0f0f2;
+  padding-top: ratio(26);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-wrap: wrap;
+
+  .header-title {
+    @include font(ratio(33), 700, #000);
+
+    padding-left: ratio(28);
+
+    @media screen and (min-width: 600px) {
+      @include font(36px, 700, #000);
+
+      padding-left: 42px;
+    }
+  }
+
+  @import "./nav.scss";
+
+  .container {
+    padding-top: ratio(40);
+    padding-bottom: ratio(20);
+    flex: 1;
+    overflow: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+
+    .content {
+      .header {
+        display: flex;
+        padding: 0 ratio(20);
+        align-items: flex-end;
+
+        h2 {
+          @include font(ratio(20), 600);
+        }
+
+        button {
+          @include font(ratio(16), 400, #4ea3f8);
+
+          margin-left: auto;
+          text-decoration: underline;
+        }
+      }
+
+      @import "./address-list.scss";
+
+      .address-tooltip {
+        position: absolute;
+        border-radius: ratio(15) 0 ratio(15) ratio(15);
+        background-color: #f0f0f2;
+        transform: translate(-100%, 30%);
+        box-shadow: 5px 5px 10px #ccccce, -5px -5px 10px #ffffff;
+        z-index: 20;
+
+        button {
+          @include font(ratio(12), 400, #4ea3f8);
+
+          display: block;
+          width: ratio(100);
+          line-height: ratio(30);
+          text-decoration: underline;
+
+          &:nth-child(2) {
+            color: #ff5757;
+          }
+        }
+      }
+
+      .more-btn {
+        @include font(ratio(15), 600, #4ea3f8);
+
+        display: block;
+        margin: ratio(40) auto;
+        text-decoration: underline;
+      }
+
+      .notice {
+        border: 1px solid #e1e1e1;
+        border-radius: ratio(8);
+        margin: ratio(20) ratio(20) 0;
+        padding: ratio(20);
+
+        h4 {
+          @include font(ratio(15), 600, #3e3e3e);
+
+          margin-bottom: ratio(14);
+        }
+
+        p {
+          @include font(ratio(11), 400, #989898);
+
+          line-height: 1.54;
+
+          a {
+            margin-left: ratio(5);
+            color: #4ea3f8;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .add-address-pop {
+      position: fixed;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #f0f0f2;
+      z-index: 20;
+      padding-top: ratio(30);
+      transition: top .3s;
+
+      .header {
+        padding: 0 ratio(20);
+        display: flex;
+        align-items: flex-start;
+
+        h1 {
+          @include font(ratio(20), 700, #3d3d3d);
+        }
+
+        button {
+          @include font(ratio(20), 700, #3d3d3d);
+
+          display: block;
+          margin-left: auto;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 600px) {
+    padding-top: 50px;
+  }
+}

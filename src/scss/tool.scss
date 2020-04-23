@@ -1,0 +1,9 @@
+@function ratio($num) {
+  @return $num / 360 * 100vw;
+}
+
+@mixin font($size, $weight: 400, $color: #3e3e3e) {
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+}

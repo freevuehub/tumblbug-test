@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { fetchAddress } from '../reducers/Address'
 import { loadAddress } from '../axios'
 import { AddressStoreState, AddressItem } from '../types'
-import { AddressList } from '../containers'
+import { AddressList, AddForm } from '../containers'
 import { Maybe, AddHeader } from '../components'
 
 interface TypeAddress {
@@ -59,6 +59,7 @@ class Address extends React.PureComponent<TypeProps, TypeState> {
         <Maybe if={this.state.popView}>
           <div className="add-address-pop">
             <AddHeader onClose={(event: React.MouseEvent): void => this.onAddressAddPop(event, false)} />
+            <AddForm />
           </div>
         </Maybe>
       </>

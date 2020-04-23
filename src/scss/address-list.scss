@@ -1,0 +1,54 @@
+.address-list {
+  li {
+    margin: ratio(30) ratio(20) 0;
+    padding: ratio(15) ratio(20);
+    display: flex;
+    align-items: center;
+    background: #f0f0f2;
+    box-shadow: 5px 5px 10px #ccccce, -5px -5px 10px #ffffff;
+    border-radius: ratio(8);
+
+    .info {
+      max-width: calc(100% - 30px);
+
+      h5 {
+        @include font(ratio(14), 600, #3e3e3e);
+
+        margin-bottom: ratio(6);
+        line-height: 1.5;
+        display: flex;
+
+        span {
+          @include font(ratio(10), 400, #fff);
+
+          line-height: 2;
+          padding: 0 ratio(5);
+          margin-left: ratio(5);
+          border-radius: ratio(4);
+          display: block;
+          color: #fff;
+          background: #ff5757;
+          box-shadow: 2px 2px 4px #ccccce, -2px -2px 4px #ffffff;
+        }
+      }
+
+      p {
+        @include font(ratio(12), 400, #989898);
+
+        word-break: keep-all;
+      }
+    }
+
+    button {
+      margin-left: auto;
+      display: block;
+      width: ratio(25);
+      height: ratio(25);
+      border-radius: 50%;
+      color: #5e5e5e;
+      line-height: ratio(23);
+      background: linear-gradient(145deg, #ffffff, #d8d8da);
+      box-shadow: 3px 3px 5px #ccccce, -3px -3px 5px #ffffff;
+    }
+  }
+}
