@@ -117,7 +117,7 @@ button {
       .address-list {
         li {
           margin: ratio(30) ratio(20) 0;
-          padding: ratio(23) ratio(20);
+          padding: ratio(15) ratio(20);
           display: flex;
           align-items: center;
           background: #f0f0f2;
@@ -130,6 +130,20 @@ button {
               @include font(ratio(14), 600, #3e3e3e);
 
               margin-bottom: ratio(6);
+              line-height: 1.5;
+              display: flex;
+              span {
+                @include font(ratio(10), 400, #fff);
+
+                line-height: 2;
+                padding: 0 ratio(5);
+                margin-left: ratio(5);
+                border-radius: ratio(4);
+                display: block;
+                color: #fff;
+                background: #ff5757;
+                box-shadow: 2px 2px 4px #ccccce, -2px -2px 4px #ffffff;
+              }
             }
 
             p {
@@ -148,6 +162,18 @@ button {
             background: linear-gradient(145deg, #ffffff, #d8d8da);
             box-shadow: 3px 3px 5px #ccccce, -3px -3px 5px #ffffff;
           }
+        }
+      }
+      .address-setting-pop {
+        position: absolute;
+        border-radius: ratio(10);
+        background-color: #f0f0f2;
+        transform: translate(-105%, 10%);
+        box-shadow: 5px 5px 10px #ccccce, -5px -5px 10px #ffffff;
+        button {
+          display: block;
+          width: ratio(100);
+          line-height: ratio(40);
         }
       }
       .more-btn {

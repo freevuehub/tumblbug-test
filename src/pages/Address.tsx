@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { fetchAddress } from '../reducers/Address'
 import { loadAddress } from '../axios'
-import { AddressStoreState } from '../types'
+import { AddressStoreState, AddressItem } from '../types'
 import { AddressList } from '../containers'
 
 interface TypeAddress {
@@ -16,8 +16,14 @@ class Address extends React.PureComponent<TypeProps> {
   async componentDidMount() {
     const { fetchAddress } = this.props
     const { data }: any = await loadAddress()
+    const [defaultItem] = data.addresses.filter((item: AddressItem) => item.id === data.default)
+    const idx: number = data.addresses.indexOf(defaultItem)
 
-    fetchAddress(data)
+    data.addresses.splice(idx, 1)
+
+    // console.log(defaultItem, idx, )
+
+    fetchAddress({ ...data, addresses: [defaultItem, ...data.addresses] })
   }
 
   onAddressAdd() {
