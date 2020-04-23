@@ -42,17 +42,19 @@ type TypeAction =
   | ReturnType<typeof addAddress>
   | ReturnType<typeof changeDefault>
 
-const buildList = (list: AddressItem[], id: number | undefined): AddressItem[] => {
-  if (!id) {
-    return []
-  }
-
+const buildAddress = (
+  list: AddressItem[],
+  id: number,
+): { addresses: AddressItem[]; default: number } => {
   const [defaultItem] = list.filter((item: AddressItem) => item.id === id)
   const idx: number = list.indexOf(defaultItem)
 
   list.splice(idx, 1)
 
-  return [defaultItem, ...list]
+  return {
+    addresses: [defaultItem, ...list],
+    default: id,
+  }
 }
 
 export default function Address(
@@ -63,7 +65,7 @@ export default function Address(
     case FETCH_ADDRESS:
       return {
         ...state,
-        ...action.payload,
+        ...buildAddress(action.payload.addresses, action.payload.default),
       }
     case ADD_VIEW_COUNT:
       return {
@@ -77,7 +79,7 @@ export default function Address(
     case CHANGE_DEFAULT:
       return {
         ...state,
-        default: action.payload,
+        ...buildAddress(state.addresses, action.payload),
       }
     default:
       return Object.assign({}, state)
