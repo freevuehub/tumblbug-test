@@ -5,14 +5,15 @@ interface TypeProps {
     top: number
     left: number
   }
+  onChange: Function
 }
 
 const AddressSettingPop: React.FC<TypeProps> = (props: TypeProps) => {
-  const { popStyle } = props
+  const { popStyle, onChange } = props
 
   return (
     <div style={popStyle} className="address-setting-pop">
-      <button>기본 배송지 설정</button>
+      <button onClick={(event): void => onChange(event)}>기본 배송지 설정</button>
       <button>삭제</button>
     </div>
   )

@@ -55,6 +55,12 @@ class AddressList extends React.Component<TypeProps, TypeState> {
     })
   }
 
+  onDefaultAddressChange(event: React.MouseEvent): void {
+    event.preventDefault()
+
+    console.log(this.state.addressId)
+  }
+
   onMoreAddress(event: React.MouseEvent): void {
     event.preventDefault()
 
@@ -82,7 +88,7 @@ class AddressList extends React.Component<TypeProps, TypeState> {
           ))}
         </ul>
         <Maybe if={popView}>
-          <AddressSettingPop popStyle={popStyle} />
+          <AddressSettingPop onChange={(event: React.MouseEvent): void => this.onDefaultAddressChange(event)} popStyle={popStyle} />
         </Maybe>
         <Maybe if={moreBtnView}>
           <button className="more-btn" onClick={(event): void => this.onMoreAddress(event)}>
