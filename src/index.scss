@@ -156,8 +156,23 @@ button {
       .notice {
         border: 1px solid #e1e1e1;
         border-radius: ratio(8);
-        margin: 0 ratio(20);
+        margin: ratio(20);
         padding: ratio(20);
+        h4 {
+          @include font(ratio(15), 600, #3e3e3e);
+
+          margin-bottom: ratio(14);
+        }
+        p {
+          @include font(ratio(11), 400, #989898);
+
+          line-height: 1.54;
+          a {
+            margin-left: ratio(5);
+            color: #4ea3f8;
+            text-decoration: underline;
+          }
+        }
       }
     }
   }
