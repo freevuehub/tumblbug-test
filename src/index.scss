@@ -108,6 +108,7 @@ button {
     flex: 1;
     overflow: auto;
     position: relative;
+    -webkit-overflow-scrolling: touch;
 
     .content {
       .header {
@@ -163,6 +164,8 @@ button {
 
             p {
               @include font(ratio(12), 400, #989898);
+
+              word-break: keep-all;
             }
           }
 
