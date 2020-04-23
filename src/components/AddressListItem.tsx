@@ -9,7 +9,7 @@ interface TypeProps {
 }
 
 const AddressListItem: React.FC<TypeProps> = (props: TypeProps) => {
-  const { item, defaultId, onClick, onBlur } = props
+  const { item, defaultId, onClick } = props
 
   return (
     <>
