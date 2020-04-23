@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { AddressStoreState, AddressItem } from '../types'
-import { AddressListItem } from '../components'
 import { addViewCount } from '../reducers/Address'
+import { AddressStoreState, AddressItem } from '../types'
+import { AddressListItem, AddressSettingPop } from '../components'
 
 interface TypeProps {
   Address: AddressStoreState
@@ -65,22 +65,19 @@ class AddressList extends React.Component<TypeProps, TypeState> {
 
   render(): React.ReactElement {
     const { Address } = this.props
+    const { popView, popStyle } = this.state
+    const sliceList = Address.addresses.slice(0, Address.viewCount)
 
     return (
       <>
         <ul className="address-list">
-          {Address.addresses.slice(0, Address.viewCount).map((item: AddressItem) => (
+          {sliceList.map((item: AddressItem) => (
             <li key={item.id}>
               <AddressListItem item={item} defaultId={Address.default} onClick={(event: any, id: number) => this.onSettingClick(event, id)} />
             </li>
           ))}
         </ul>
-        {this.state.popView && (
-          <div style={this.state.popStyle} className="address-setting-pop">
-            <button>기본 배송지 설정</button>
-            <button>삭제</button>
-          </div>
-        )}
+        {popView && <AddressSettingPop popStyle={popStyle} />}
         <button className="more-btn" onClick={(event) => this.onMoreAddress(event)}>
           + 더 보기
         </button>
