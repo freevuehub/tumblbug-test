@@ -3,9 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { HomePage } from '../pages'
 import { LinkNav } from '../containers'
 
-const Root: React.FC = (props) => {
-  console.log(props)
-
+const Root: React.FC = () => {
   return (
     <div className="app">
       <h1 className="header-title">설정</h1>
