@@ -5,10 +5,11 @@ interface TypeProps {
   item: AddressItem
   defaultId: number
   onClick: Function
+  onBlur: Function
 }
 
 const AddressListItem: React.FC<TypeProps> = (props: TypeProps) => {
-  const { item, defaultId, onClick } = props
+  const { item, defaultId, onClick, onBlur } = props
 
   return (
     <>
@@ -18,7 +19,9 @@ const AddressListItem: React.FC<TypeProps> = (props: TypeProps) => {
         </h5>
         <p>{item.address}</p>
       </div>
-      <button onClick={(event) => onClick(event, item.id)}>&sdot;&sdot;&sdot;</button>
+      <button onBlur={() => onBlur()} onClick={(event) => onClick(event, item.id)}>
+        &sdot;&sdot;&sdot;
+      </button>
     </>
   )
 }

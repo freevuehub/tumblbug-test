@@ -47,6 +47,12 @@ class AddressList extends React.Component<TypeProps, TypeState> {
     }
   }
 
+  onPopClose() {
+    this.setState({
+      popView: false,
+    })
+  }
+
   onMoreAddress(event: any) {
     event.preventDefault()
 
@@ -64,7 +70,12 @@ class AddressList extends React.Component<TypeProps, TypeState> {
         <ul className="address-list">
           {sliceList.map((item: AddressItem) => (
             <li key={item.id}>
-              <AddressListItem item={item} defaultId={Address.default} onClick={(event: any, id: number) => this.onSettingClick(event, id)} />
+              <AddressListItem
+                item={item}
+                defaultId={Address.default}
+                onBlur={() => this.onPopClose()}
+                onClick={(event: any, id: number) => this.onSettingClick(event, id)}
+              />
             </li>
           ))}
         </ul>
