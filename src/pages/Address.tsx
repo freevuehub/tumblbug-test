@@ -22,7 +22,7 @@ class Address extends React.PureComponent<TypeProps, TypeState> {
     popView: false,
   }
 
-  async componentDidMount() {
+  async componentDidMount(): Promise<void> {
     const { fetchAddress } = this.props
     const { data }: any = await loadAddress()
     const [defaultItem] = data.addresses.filter((item: AddressItem) => item.id === data.default)
@@ -33,13 +33,12 @@ class Address extends React.PureComponent<TypeProps, TypeState> {
     fetchAddress({ ...data, addresses: [defaultItem, ...data.addresses] })
   }
 
-  onAddressAdd(event: any) {
+  onAddressAdd(event: React.MouseEvent): void {
     event.preventDefault()
 
     this.setState({
       popView: true,
     })
-    console.log('aa', this)
   }
 
   render(): React.ReactElement {
@@ -48,7 +47,7 @@ class Address extends React.PureComponent<TypeProps, TypeState> {
         <div className="content">
           <div className="header">
             <h2>등록된 배송지</h2>
-            <button onClick={(event) => this.onAddressAdd(event)}>+ 추가</button>
+            <button onClick={(event: React.MouseEvent): void => this.onAddressAdd(event)}>+ 추가</button>
           </div>
           <AddressList />
           <div className="notice">
