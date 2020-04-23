@@ -10,6 +10,6 @@ const InitializeState = {
   ],
 }
 
-export default function Nav(state: NavStoreState = InitializeState) {
+export default function Nav(state: NavStoreState = InitializeState): NavStoreState {
   return Object.assign({}, state)
 }

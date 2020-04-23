@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addViewCount } from '../reducers/Address'
 import { AddressStoreState, AddressItem } from '../types'
-import { Maybe, AddressListItem, AddressSettingPop } from '../components'
+import { Maybe, AddressListItem, AddressTooltip } from '../components'
 
 interface TypeProps {
   Address: AddressStoreState
@@ -56,6 +56,11 @@ class AddressList extends React.Component<TypeProps, TypeState> {
   }
 
   onDefaultAddressChange(event: React.MouseEvent): void {
+    this.setState({
+      popView: true,
+    })
+    console.log(this.state.addressId)
+
     event.preventDefault()
 
     console.log(this.state.addressId)
@@ -88,7 +93,7 @@ class AddressList extends React.Component<TypeProps, TypeState> {
           ))}
         </ul>
         <Maybe if={popView}>
-          <AddressSettingPop onChange={(event: React.MouseEvent): void => this.onDefaultAddressChange(event)} popStyle={popStyle} />
+          <AddressTooltip onChange={(event: React.MouseEvent): void => this.onDefaultAddressChange(event)} popStyle={popStyle} />
         </Maybe>
         <Maybe if={moreBtnView}>
           <button className="more-btn" onClick={(event): void => this.onMoreAddress(event)}>

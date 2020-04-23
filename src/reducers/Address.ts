@@ -23,7 +23,7 @@ const InitializeState: AddressStoreState = {
 
 type TypeAction = ReturnType<typeof fetchAddress> | ReturnType<typeof addViewCount>
 
-export default function Address(state: AddressStoreState = InitializeState, action: TypeAction) {
+export default function Address(state: AddressStoreState = InitializeState, action: TypeAction): AddressStoreState {
   switch (action.type) {
     case FETCH_ADDRESS:
       return {

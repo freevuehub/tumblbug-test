@@ -112,7 +112,6 @@ button {
     overflow: auto;
     position: relative;
     -webkit-overflow-scrolling: touch;
-    box-shadow: inset 5px 5px 10px #ccccce, inset -5px -5px 10px #ffffff;
 
     .content {
       .header {
@@ -187,7 +186,7 @@ button {
         }
       }
 
-      .address-setting-pop {
+      .address-tooltip {
         position: absolute;
         border-radius: ratio(15) 0 ratio(15) ratio(15);
         background-color: #f0f0f2;
@@ -246,12 +245,17 @@ button {
     .add-address-pop {
       position: fixed;
       left: 0;
-      top: 0;
+      top: 100%;
       right: 0;
       bottom: 0;
       background-color: #f0f0f2;
       z-index: 20;
       padding-top: ratio(30);
+      transition: top .3s;
+
+      &.on {
+        top: 0;
+      }
 
       .header {
         padding: 0 ratio(20);
