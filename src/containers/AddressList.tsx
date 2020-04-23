@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { changeDefault } from '../reducers/Address'
 import { addToast } from '../reducers/Toast'
-import { SystemStateContext } from '../contexts'
+import { useSystemState, useSystemDispatch } from '../contexts'
 import { AddressStoreState, AddressItem } from '../types'
 import { Maybe, AddressListItem, AddressTooltip, Confirm } from '../components'
 
@@ -17,22 +17,27 @@ const AddressList: React.FC = () => {
   const { addresses, default: defaultId } = useSelector(({ Address }: TypeProps) => Address)
   const dispatch = useDispatch()
 
+  const { tooltipView } = useSystemState()
+  const systemDispatch = useSystemDispatch()
+
   const [count, setCount] = useState(5)
-  const [{ id, style, tooltip }, setId] = useState({
+  const [{ id, style }, setId] = useState({
     id: defaultId,
     style: { top: 0, left: 0 },
-    tooltip: false,
   })
+
   const onItemClick = ({ target }: React.MouseEvent, id: number): void => {
     const { offsetLeft, offsetTop } = target as HTMLElement
 
-    setId({ style: { left: offsetLeft, top: offsetTop }, id, tooltip: true })
+    setId({ style: { left: offsetLeft, top: offsetTop }, id })
+    systemDispatch({ type: 'TOOLTIP_ON_OFF', payload: true })
   }
   const onDefaultAddressChange = (event: React.MouseEvent): void => {
     event.preventDefault()
 
     dispatch(changeDefault(id))
-    setId({ style, id, tooltip: false })
+    setId({ style, id })
+    systemDispatch({ type: 'TOOLTIP_ON_OFF', payload: false })
     dispatch(
       addToast({
         text: '기본 배송지가 변경되었습니다.',
@@ -56,7 +61,7 @@ const AddressList: React.FC = () => {
           + 더 보기
         </button>
       </Maybe>
-      <Maybe if={tooltip}>
+      <Maybe if={tooltipView}>
         <AddressTooltip onChange={onDefaultAddressChange} style={style} />
       </Maybe>
       <Maybe if={true}>
