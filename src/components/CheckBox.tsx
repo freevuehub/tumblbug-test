@@ -1,17 +1,22 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Maybe from './Maybe'
 
 interface TypeProps {
   className?: string
   label?: string
+  value?: boolean
+  onChange: Function
 }
 
 const CheckBox: React.FC<TypeProps> = (props: TypeProps) => {
-  const [check, setCheck] = useState(false)
-
   return (
-    <div className={`check-box ${props.className} ${check ? 'checked' : ''}`}>
-      <input id="checkbox" type="checkbox" checked={check} onChange={({ target }: any): void => setCheck(target.checked)} />
+    <div className={`check-box ${props.className}`}>
+      <input
+        id="checkbox"
+        type="checkbox"
+        checked={props.value}
+        onChange={({ target }): void => props.onChange(target.checked)}
+      />
       <Maybe if={!!props.label}>
         <label htmlFor="checkbox">{props.label}</label>
       </Maybe>
