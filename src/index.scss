@@ -231,6 +231,16 @@ button {
         }
       }
     }
+
+    .add-address-pop {
+      position: fixed;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #f0f0f2;
+      z-index: 20;
+    }
   }
 
   @media screen and (min-width: 600px) {
