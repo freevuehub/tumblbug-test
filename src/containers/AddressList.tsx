@@ -97,6 +97,7 @@ class AddressList extends React.Component<TypeProps, TypeState> {
   render(): React.ReactElement {
     const { Address } = this.props
     const { popView, popStyle } = this.state
+    console.log(this)
 
     return (
       <>
