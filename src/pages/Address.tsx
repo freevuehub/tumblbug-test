@@ -4,7 +4,7 @@ import { fetchAddress } from '../reducers/Address'
 import { loadAddress } from '../axios'
 import { AddressStoreState, AddressItem } from '../types'
 import { AddressList } from '../containers'
-import { Maybe } from '../components'
+import { Maybe, AddHeader } from '../components'
 
 interface TypeAddress {
   Address: AddressStoreState
@@ -33,12 +33,10 @@ class Address extends React.PureComponent<TypeProps, TypeState> {
     fetchAddress({ ...data, addresses: [defaultItem, ...data.addresses] })
   }
 
-  onAddressAdd(event: React.MouseEvent): void {
+  onAddressAddPop(event: React.MouseEvent, popView: boolean): void {
     event.preventDefault()
 
-    this.setState({
-      popView: true,
-    })
+    this.setState({ popView })
   }
 
   render(): React.ReactElement {
@@ -47,7 +45,7 @@ class Address extends React.PureComponent<TypeProps, TypeState> {
         <div className="content">
           <div className="header">
             <h2>등록된 배송지</h2>
-            <button onClick={(event): void => this.onAddressAdd(event)}>+ 추가</button>
+            <button onClick={(event): void => this.onAddressAddPop(event, true)}>+ 추가</button>
           </div>
           <AddressList />
           <div className="notice">
@@ -59,7 +57,9 @@ class Address extends React.PureComponent<TypeProps, TypeState> {
           </div>
         </div>
         <Maybe if={this.state.popView}>
-          <div className="add-address-pop">add-address-pop</div>
+          <div className="add-address-pop">
+            <AddHeader onClose={(event: React.MouseEvent): void => this.onAddressAddPop(event, false)} />
+          </div>
         </Maybe>
       </>
     )

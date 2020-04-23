@@ -67,19 +67,22 @@ button {
     margin-top: ratio(40);
     display: flex;
     padding: 0 ratio(28) ratio(5);
-    justify-content: space-between;
-    box-shadow: 20px 20px 40px #f0f0f2;
-    z-index: 1;
 
     li {
+      margin-right: ratio(14);
+
       a {
-        @include font(ratio(17), 400, #999);
+        @include font(ratio(14), 400, #999);
       }
 
       &.on {
         a {
           @include font(ratio(20), 700, #3e3e3e);
         }
+      }
+
+      &:last-child {
+        margin-right: 0;
       }
     }
 
@@ -109,6 +112,7 @@ button {
     overflow: auto;
     position: relative;
     -webkit-overflow-scrolling: touch;
+    box-shadow: inset 5px 5px 10px #ccccce, inset -5px -5px 10px #ffffff;
 
     .content {
       .header {
@@ -240,6 +244,24 @@ button {
       bottom: 0;
       background-color: #f0f0f2;
       z-index: 20;
+      padding-top: ratio(30);
+
+      .header {
+        padding: 0 ratio(20);
+        display: flex;
+        align-items: flex-start;
+
+        h1 {
+          @include font(ratio(20), 700, #3d3d3d);
+        }
+
+        button {
+          @include font(ratio(20), 700, #3d3d3d);
+
+          display: block;
+          margin-left: auto;
+        }
+      }
     }
   }
 
