@@ -25,12 +25,8 @@ class Address extends React.PureComponent<TypeProps, TypeState> {
   async componentDidMount(): Promise<void> {
     const { fetchAddress } = this.props
     const { data }: any = await loadAddress()
-    const [defaultItem] = data.addresses.filter((item: AddressItem) => item.id === data.default)
-    const idx: number = data.addresses.indexOf(defaultItem)
 
-    data.addresses.splice(idx, 1)
-
-    fetchAddress({ ...data, addresses: [defaultItem, ...data.addresses] })
+    fetchAddress(data)
   }
 
   onAddressAddPop(event: React.MouseEvent, popView: boolean): void {
@@ -51,7 +47,8 @@ class Address extends React.PureComponent<TypeProps, TypeState> {
           <div className="notice">
             <h4>배송지를 삭제하면 예약된 후원의 배송지 정보도 삭제되나요?</h4>
             <p>
-              현재 후원하신 프로젝트에 등록된 배송지가 삭제되거나 변경되지 않습니다. 이를 변경하시려면 후원현황에서 변경해주세요.
+              현재 후원하신 프로젝트에 등록된 배송지가 삭제되거나 변경되지 않습니다. 이를
+              변경하시려면 후원현황에서 변경해주세요.
               <a href="#">내 후원현황 바로가기</a>
             </p>
           </div>
@@ -59,7 +56,9 @@ class Address extends React.PureComponent<TypeProps, TypeState> {
         <Maybe if={this.state.popView}>
           <div className="add-address-pop">
             <div className="wrap">
-              <AddHeader onClose={(event: React.MouseEvent): void => this.onAddressAddPop(event, false)} />
+              <AddHeader
+                onClose={(event: React.MouseEvent): void => this.onAddressAddPop(event, false)}
+              />
               <AddForm />
             </div>
           </div>

@@ -3,6 +3,7 @@ import { AddressStoreState, AddressItem } from '../types'
 const FETCH_ADDRESS = '@command/fetch/address' as const
 const ADD_VIEW_COUNT = '@command/add/view/count' as const
 const ADD_ADDRESS = '@command/add/address' as const
+const CHANGE_DEFAULT = '@command/change/default' as const
 
 export const fetchAddress = (payload: AddressStoreState) => {
   return {
@@ -22,6 +23,12 @@ export const addAddress = (payload: AddressItem) => {
     type: ADD_ADDRESS,
   }
 }
+export const changeDefault = (payload: number) => {
+  return {
+    type: CHANGE_DEFAULT,
+    payload,
+  }
+}
 
 const InitializeState: AddressStoreState = {
   addresses: [],
@@ -33,6 +40,7 @@ type TypeAction =
   | ReturnType<typeof fetchAddress>
   | ReturnType<typeof addViewCount>
   | ReturnType<typeof addAddress>
+  | ReturnType<typeof changeDefault>
 
 export default function Address(
   state: AddressStoreState = InitializeState,
@@ -52,6 +60,11 @@ export default function Address(
     case ADD_ADDRESS:
       return {
         ...state,
+      }
+    case CHANGE_DEFAULT:
+      return {
+        ...state,
+        default: action.payload,
       }
     default:
       return Object.assign({}, state)
