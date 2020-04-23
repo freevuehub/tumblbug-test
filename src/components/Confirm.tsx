@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSystemState } from '../contexts'
 
 interface TypeProps {
   children?: React.ReactNode
@@ -6,6 +7,9 @@ interface TypeProps {
 }
 
 const Confirm: React.FC<TypeProps> = (props: TypeProps) => {
+  const test = useSystemState()
+
+  console.log(test)
   return (
     <div className="confirm">
       <div className="wrap">

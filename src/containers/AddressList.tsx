@@ -30,28 +30,19 @@ class AddressList extends React.Component<TypeProps, TypeState> {
   }
 
   get buildAddress(): AddressItem[] {
-    const { Address } = this.props
-    // const [defaultItem] = Address.addresses.filter(
-    //   (item: AddressItem) => item.id === Address.default,
-    // )
+    const {
+      Address: { addresses, viewCount },
+    } = this.props
 
-    // console.log(Address.addresses, defaultItem, Address.default)
-
-    // if (!defaultItem) {
-    //   return Address.addresses.slice(0, Address.viewCount)
-    // }
-
-    // const idx: number = Address.addresses.indexOf(defaultItem)
-
-    // Address.addresses.splice(idx, 1)
-
-    return Address.addresses.slice(0, Address.viewCount)
+    return addresses.slice(0, viewCount)
   }
 
   get moreBtnView(): boolean {
-    const { Address } = this.props
+    const {
+      Address: { addresses },
+    } = this.props
 
-    return Address.addresses.length > this.buildAddress.length
+    return addresses.length > this.buildAddress.length
   }
 
   onSettingClick(event: React.MouseEvent, id: number): void {

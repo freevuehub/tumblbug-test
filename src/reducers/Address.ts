@@ -42,6 +42,19 @@ type TypeAction =
   | ReturnType<typeof addAddress>
   | ReturnType<typeof changeDefault>
 
+const buildList = (list: AddressItem[], id: number | undefined): AddressItem[] => {
+  if (!id) {
+    return []
+  }
+
+  const [defaultItem] = list.filter((item: AddressItem) => item.id === id)
+  const idx: number = list.indexOf(defaultItem)
+
+  list.splice(idx, 1)
+
+  return [defaultItem, ...list]
+}
+
 export default function Address(
   state: AddressStoreState = InitializeState,
   action: TypeAction,

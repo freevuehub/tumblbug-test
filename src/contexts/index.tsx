@@ -1,21 +1,54 @@
-import React from 'react'
+import React, { createContext, Dispatch, useReducer, useContext } from 'react'
 
-const Context = React.createContext({})
-const { Provider, Consumer: SystemConsumer } = Context
-
-interface TypeProps {
-  children: React.ReactNode
+export interface TypeState {
+  confirmView: boolean
 }
 
-class SystemProvider extends React.PureComponent<TypeProps> {
-  state = {
-    confirmView: false,
-  }
+const SystemStateContext = createContext<TypeState | undefined>(undefined)
 
-  render(): React.ReactElement {
-    const { state } = this
-    return <Provider value={state}>{this.props.children}</Provider>
+type Action = { type: 'ON_OFF'; payload: boolean }
+type TypeAction = Dispatch<Action>
+
+const SystemActionContext = createContext<TypeAction | undefined>(undefined)
+
+function SystemReducer(state: TypeState, action: Action): TypeState {
+  switch (action.type) {
+    case 'ON_OFF':
+      return {
+        ...state,
+        confirmView: action.payload,
+      }
+    default:
+      throw new Error('존재하지 않는 액션입니다.')
   }
 }
 
-export { SystemProvider, SystemConsumer }
+export function SystemProvider(props: { children: React.ReactNode }): React.ReactElement {
+  const [state, dispatch] = useReducer(SystemReducer, { confirmView: false })
+
+  return (
+    <SystemActionContext.Provider value={dispatch}>
+      <SystemStateContext.Provider value={state}>{props.children}</SystemStateContext.Provider>
+    </SystemActionContext.Provider>
+  )
+}
+
+export function useSystemState() {
+  const state = useContext(SystemStateContext)
+
+  if (!state) {
+    throw new Error('Context를 찾지 못했습니다.')
+  }
+
+  return state
+}
+
+export function useSystemDispatch() {
+  const dispatch = useContext(SystemActionContext)
+
+  if (!dispatch) {
+    throw new Error('Context를 찾지 못했습니다.')
+  }
+
+  return dispatch
+}

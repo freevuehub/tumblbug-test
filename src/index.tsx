@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reducers from './reducers'
-import { SystemProvider, SystemConsumer } from './contexts'
+import { SystemProvider } from './contexts'
 
 const rootElement: HTMLElement | null = document.getElementById('root')
 
