@@ -39,9 +39,17 @@ button {
   color: $color;
 }
 
+#root {
+  height: 100%;
+}
+
 .app {
   background-color: #f0f0f2;
   padding-top: ratio(26);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-wrap: wrap;
 
   .header-title {
     @include font(ratio(33), 700, #000);
@@ -56,10 +64,12 @@ button {
   }
 
   .link-nav {
-    margin-top: ratio(60);
+    margin-top: ratio(40);
     display: flex;
-    padding: 0 ratio(28);
+    padding: 0 ratio(28) ratio(5);
     justify-content: space-between;
+    box-shadow: 20px 20px 40px #f0f0f2;
+    z-index: 1;
 
     li {
       a {
@@ -93,8 +103,11 @@ button {
   }
 
   .container {
-    padding-top: ratio(55);
+    padding-top: ratio(40);
     padding-bottom: ratio(20);
+    flex: 1;
+    overflow: auto;
+    position: relative;
 
     .content {
       .header {
