@@ -1,0 +1,20 @@
+.toast-list {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  padding: 0 ratio(20);
+
+  .toast-item {
+    @include font(ratio(16), 600, #fff);
+
+    padding: ratio(10);
+    margin-top: ratio(8);
+    border-radius: ratio(8);
+    box-shadow: 2px 2px 4px #ccccce, -2px -2px 4px #ffffff;
+
+    &.sucess {
+      background-color: rgb(124, 216, 187);
+    }
+  }
+}

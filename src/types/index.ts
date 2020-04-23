@@ -19,14 +19,8 @@ export interface AddressStoreState {
   viewCount: number
 }
 
-export interface ToastItem {
+export interface ToastStoreState {
   text: string
   view: boolean
-  time?: string
   type: string
-  id: number
-}
-
-export interface ToastStoreState {
-  list: ToastItem[]
 }

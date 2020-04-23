@@ -1,21 +1,32 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { ToastStoreState } from '../types'
+import { removeToast } from '../reducers/Toast'
+import { Maybe } from '../components'
 
 interface TypeHooks {
   Toast: ToastStoreState
 }
 
 const Toast: React.FC = () => {
-  const { list } = useSelector(({ Toast }: TypeHooks) => Toast)
+  const { view, type, text } = useSelector(({ Toast }: TypeHooks) => Toast)
+  const dispatch = useDispatch()
+
+  if (view) {
+    let timer
+
+    if (!timer) {
+      timer = setTimeout(() => {
+        dispatch(removeToast())
+      }, 3000)
+    }
+  }
 
   return (
     <div className="toast-list">
-      {list.map((item) => (
-        <div key={item.id} className="toast-item">
-          {item.text}
-        </div>
-      ))}
+      <Maybe if={view}>
+        <div className={`toast-item ${type}`}>{text}</div>
+      </Maybe>
     </div>
   )
 }

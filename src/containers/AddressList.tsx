@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addViewCount, changeDefault } from '../reducers/Address'
 import { addToast } from '../reducers/Toast'
-import { AddressStoreState, AddressItem, ToastItem } from '../types'
+import { AddressStoreState, AddressItem, ToastStoreState } from '../types'
 import { Maybe, AddressListItem, AddressTooltip, Confirm } from '../components'
 
 interface TypeProps {
@@ -82,6 +82,7 @@ class AddressList extends React.Component<TypeProps, TypeState> {
     this.props.addToast({
       text: '기본 배송지가 변경되었습니다.',
       view: true,
+      type: 'sucess',
     })
   }
 
@@ -137,6 +138,6 @@ export default connect(
   (dispatch) => ({
     addViewCount: () => dispatch(addViewCount()),
     changeDefault: (payload: number) => dispatch(changeDefault(payload)),
-    addToast: (payload: ToastItem) => dispatch(addToast(payload)),
+    addToast: (payload: ToastStoreState) => dispatch(addToast(payload)),
   }),
 )(AddressList)

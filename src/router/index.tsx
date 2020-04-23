@@ -6,6 +6,7 @@ import { LinkNav, Toast } from '../containers'
 const Root: React.FC = () => {
   return (
     <div className="app">
+      <Toast />
       <h1 className="header-title">설정</h1>
       <BrowserRouter>
         <LinkNav />
@@ -13,7 +14,6 @@ const Root: React.FC = () => {
           <Route path="/" component={HomePage} />
         </Switch>
       </BrowserRouter>
-      <Toast />
     </div>
   )
 }
