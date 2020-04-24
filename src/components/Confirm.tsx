@@ -8,13 +8,17 @@ const Confirm: React.FC = () => {
   const onClose = (event: React.MouseEvent): void => {
     event.stopPropagation()
 
-    dispatch({
-      type: 'CONFIRM_UPDATE',
-      payload: {
-        ...confirmInfo,
-        view: false,
-      },
-    })
+    const { target, currentTarget } = event
+
+    if (target === currentTarget) {
+      dispatch({
+        type: 'CONFIRM_UPDATE',
+        payload: {
+          ...confirmInfo,
+          view: false,
+        },
+      })
+    }
   }
   const onConfirm = async (event: React.MouseEvent): Promise<void> => {
     event.stopPropagation()
