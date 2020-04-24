@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const AddressNotice: React.FC = () => (
   <div className="notice">
@@ -6,7 +7,7 @@ const AddressNotice: React.FC = () => (
     <p>
       현재 후원하신 프로젝트에 등록된 배송지가 삭제되거나 변경되지 않습니다. 이를 변경하시려면
       후원현황에서 변경해주세요.
-      <a href="#">내 후원현황 바로가기</a>
+      <Link to="#">내 후원현황 바로가기</Link>
     </p>
   </div>
 )

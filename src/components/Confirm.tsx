@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Maybe from './Maybe'
 import { useSystemState, useSystemDispatch } from '../contexts'
 
 const Confirm: React.FC = () => {
   const { confirmInfo } = useSystemState()
   const dispatch = useSystemDispatch()
+  const [on, setOn] = useState('')
+
+  useEffect(() => {
+    if (confirmInfo.view) {
+      setOn('on')
+    } else {
+      setOn('')
+    }
+  })
+
   const onClose = (event: React.MouseEvent): void => {
     event.stopPropagation()
 
@@ -35,7 +45,7 @@ const Confirm: React.FC = () => {
 
   return (
     <Maybe if={confirmInfo.view}>
-      <div className="confirm" onClick={onClose}>
+      <div className={`confirm ${on}`} onClick={onClose}>
         <div className="wrap">
           <div className="description">
             <p>{confirmInfo.text}</p>

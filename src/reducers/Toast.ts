@@ -38,14 +38,11 @@ export default function ToastReducer(
         ],
       }
     case REMOVE_TOAST:
-      console.log(state.list.slice(1))
       return {
         ...state,
         list: state.list.map((item) =>
           item.id === action.payload ? { ...item, view: false } : item,
         ),
-        // .slice(1),
-        // [...state.list.slice(0, action.payload), ...state.list.slice(action.payload + 1)],
       }
     default:
       return Object.assign({}, state)
