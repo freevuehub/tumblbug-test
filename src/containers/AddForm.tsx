@@ -1,16 +1,31 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { addAddress } from '../reducers/Address'
 import { TextInput, CheckBox } from '../components'
 
 const AddForm: React.FC = () => {
+  const dispatch = useDispatch()
+
   const [name, setName] = useState('')
-  const [addressNumber, setNumber] = useState('')
+  const [postnumber, setNumber] = useState('')
   const [address, setAddress] = useState('')
   const [check, setCheck] = useState(false)
 
   const onSubimt = (event: React.MouseEvent): void => {
     event.preventDefault()
 
-    console.log(name, addressNumber, address, check)
+    dispatch(
+      addAddress(
+        {
+          postnumber,
+          name,
+          address,
+        },
+        check,
+      ),
+    )
+
+    console.log(name, postnumber, address, check)
   }
 
   return (
@@ -27,7 +42,7 @@ const AddForm: React.FC = () => {
             type="number"
             className="form-item"
             placeholder="우편번호"
-            value={addressNumber}
+            value={postnumber}
             onChange={(value: string): void => setNumber(value)}
           />
           <TextInput

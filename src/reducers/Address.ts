@@ -1,4 +1,4 @@
-import { AddressStoreState, AddressItem } from '../types'
+import { AddressStoreState, AddressItem, TypeAddress } from '../types'
 
 const FETCH_ADDRESS = '@command/fetch/address' as const
 const ADD_ADDRESS = '@command/add/address' as const
@@ -11,11 +11,17 @@ export const fetchAddress = (payload: AddressStoreState) => {
     payload,
   }
 }
-export const addAddress = (payload: AddressItem) => {
-  console.log(payload)
-
+export const addAddress = (payload: TypeAddress<string>, check: boolean) => {
   return {
     type: ADD_ADDRESS,
+    payload: {
+      item: {
+        postnumber: Number(payload.postnumber),
+        address: payload.address,
+        name: payload.name,
+      },
+      check,
+    },
   }
 }
 export const removeAddress = (payload: number) => {
@@ -48,19 +54,6 @@ const findDefault = (list: AddressItem[], id: number): AddressItem => {
   return defaultItem
 }
 const findIdx = (list: AddressItem[], item: AddressItem): number => list.indexOf(item)
-const buildAddress = (
-  list: AddressItem[],
-  id: number,
-): { addresses: AddressItem[]; default: number } => {
-  const item = findDefault(list, id)
-
-  list.splice(findIdx(list, item), 1)
-
-  return {
-    addresses: [item, ...list],
-    default: id,
-  }
-}
 
 export default function Address(
   state: AddressStoreState = InitializeState,
@@ -70,16 +63,29 @@ export default function Address(
     case FETCH_ADDRESS:
       return {
         ...state,
-        ...buildAddress(action.payload.addresses, action.payload.default),
+        ...action.payload,
       }
     case ADD_ADDRESS:
-      return {
-        ...state,
-      }
+      return action.payload.check
+        ? {
+            ...state,
+            addresses: state.addresses.concat({
+              ...action.payload.item,
+              id: Math.max(...state.addresses.map((item: AddressItem) => item.id)) + 1,
+            }),
+            default: Math.max(...state.addresses.map((item: AddressItem) => item.id)) + 1,
+          }
+        : {
+            ...state,
+            addresses: state.addresses.concat({
+              ...action.payload.item,
+              id: Math.max(...state.addresses.map((item: AddressItem) => item.id)) + 1,
+            }),
+          }
     case CHANGE_DEFAULT:
       return {
         ...state,
-        ...buildAddress(state.addresses, action.payload),
+        default: action.payload,
       }
     case REMOVE_ADDRESS:
       return {

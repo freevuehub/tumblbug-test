@@ -14,7 +14,28 @@ interface TypeProps {
 }
 
 const AddressList: React.FC = () => {
-  const { addresses, default: defaultId } = useSelector(({ Address }: TypeProps) => Address)
+  const { list, defaultId } = useSelector(({ Address }: TypeProps) => {
+    if (Address.addresses.length) {
+      const [defaultItem] = Address.addresses.filter(
+        (item: AddressItem) => item.id === Address.default,
+      )
+      const idx: number = Address.addresses.indexOf(defaultItem)
+
+      return {
+        list: [
+          defaultItem,
+          ...Address.addresses.slice(0, idx),
+          ...Address.addresses.slice(idx + 1),
+        ],
+        defaultId: Address.default,
+      }
+    } else {
+      return {
+        list: Address.addresses,
+        defaultId: Address.default,
+      }
+    }
+  })
   const dispatch = useDispatch()
 
   const { tooltipView, confirmInfo } = useSystemState()
@@ -85,13 +106,13 @@ const AddressList: React.FC = () => {
   return (
     <>
       <ul className="address-list">
-        {addresses.slice(0, count).map((item: AddressItem) => (
+        {list.slice(0, count).map((item: AddressItem) => (
           <li key={item.id}>
             <AddressListItem item={item} defaultId={defaultId} onClick={onItemClick} />
           </li>
         ))}
       </ul>
-      <Maybe if={addresses.length > count}>
+      <Maybe if={list.length > count}>
         <button className="more-btn" onClick={(): void => setCount(count + 5)}>
           + 더 보기
         </button>

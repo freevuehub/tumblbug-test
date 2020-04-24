@@ -6,11 +6,14 @@ export interface NavStoreState {
   list: NavItem[]
 }
 
-export interface AddressItem {
-  id: number
-  postnumber: number
+export interface TypeAddress<T = number> {
+  postnumber: T
   name: string
   address: string
+}
+
+export interface AddressItem extends TypeAddress {
+  id: number
 }
 
 export interface AddressStoreState {
