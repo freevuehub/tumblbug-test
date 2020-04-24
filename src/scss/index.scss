@@ -18,8 +18,7 @@
     padding-left: ratio(28);
 
     @media screen and (min-width: $pad) {
-      @include font(36px, 700, #000);
-
+      font-size: 36px;
       padding-left: 42px;
     }
   }
@@ -60,6 +59,11 @@
           button {
             font-size: 16px;
           }
+        }
+
+        @media screen and (min-width: $desktop) {
+          padding: 0;
+          margin-bottom: 20px;
         }
       }
 
@@ -126,11 +130,37 @@
             }
           }
         }
+
+        @media screen and (min-width: $desktop) {
+          width: 250px;
+          margin: 0 0 0 30px;
+          position: sticky;
+          top: 0;
+        }
       }
     }
 
     @media screen and (min-width: $pad) {
       padding: 50px 0 20px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      overflow: hidden;
+
+      .content {
+        display: flex;
+        height: 100%;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        padding: 42px;
+        overflow: auto;
+        position: relative;
+        -webkit-overflow-scrolling: touch;
+
+        .article {
+          flex: 1;
+        }
+      }
     }
   }
 }

@@ -1,4 +1,5 @@
 $pad: 768px;
+$desktop: 1024px;
 
 @function ratio($num) {
   @return $num / 360 * 100vw;

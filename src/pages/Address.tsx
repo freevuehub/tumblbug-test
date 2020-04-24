@@ -39,11 +39,13 @@ class Address extends React.PureComponent<TypeProps, TypeState> {
     return (
       <>
         <div className="content">
-          <div className="header">
-            <h2>등록된 배송지</h2>
-            <button onClick={(event): void => this.onAddressAddPop(event, true)}>+ 추가</button>
+          <div className="article">
+            <div className="header">
+              <h2>등록된 배송지</h2>
+              <button onClick={(event): void => this.onAddressAddPop(event, true)}>+ 추가</button>
+            </div>
+            <AddressList />
           </div>
-          <AddressList />
           <AddressNotice />
         </div>
         <Maybe if={this.state.popView}>

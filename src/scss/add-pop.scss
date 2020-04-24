@@ -31,31 +31,29 @@
       }
     }
 
-    .content {
+    .form {
       padding: 0 ratio(20);
 
-      .form {
-        form {
-          .form-item {
-            margin-top: ratio(50);
+      form {
+        .form-item {
+          margin-top: ratio(50);
 
-            &.check {
-              margin-top: ratio(34);
-              padding: 0 ratio(6);
-            }
+          &.check {
+            margin-top: ratio(34);
+            padding: 0 ratio(6);
           }
+        }
 
-          button {
-            @include font(ratio(14), 600, #fff);
+        button {
+          @include font(ratio(14), 600, #fff);
 
-            margin-top: ratio(60);
-            display: block;
-            width: 100%;
-            height: ratio(48);
-            border-radius: ratio(10);
-            background: linear-gradient(145deg, #fe6a65, #d55955);
-            box-shadow: 3px 3px 5px #ccccce, -3px -3px 5px #ffffff;
-          }
+          margin-top: ratio(60);
+          display: block;
+          width: 100%;
+          height: ratio(48);
+          border-radius: ratio(10);
+          background: linear-gradient(145deg, #fe6a65, #d55955);
+          box-shadow: 3px 3px 5px #ccccce, -3px -3px 5px #ffffff;
         }
       }
     }
@@ -87,43 +85,41 @@
         }
       }
 
-      .content {
+      .form {
         padding: 0;
 
-        .form {
-          form {
-            display: flex;
-            flex-wrap: wrap;
+        form {
+          display: flex;
+          flex-wrap: wrap;
 
-            .form-item {
-              margin: 0;
+          .form-item {
+            margin: 0;
 
-              &:nth-child(1) {
-                width: 200px;
-              }
-
-              &:nth-child(2) {
-                width: 228px;
-                margin-left: auto;
-              }
-
-              &:nth-child(3) {
-                width: 100%;
-                margin-top: 50px;
-              }
-
-              &.check {
-                margin-top: 34px;
-                padding: 0;
-              }
+            &:nth-child(1) {
+              width: 200px;
             }
 
-            button {
-              font-size: 16px;
-              margin-top: 60px;
-              height: 48px;
-              border-radius: 10px;
+            &:nth-child(2) {
+              width: 228px;
+              margin-left: auto;
             }
+
+            &:nth-child(3) {
+              width: 100%;
+              margin-top: 50px;
+            }
+
+            &.check {
+              margin-top: 34px;
+              padding: 0;
+            }
+          }
+
+          button {
+            font-size: 16px;
+            margin-top: 60px;
+            height: 48px;
+            border-radius: 10px;
           }
         }
       }
