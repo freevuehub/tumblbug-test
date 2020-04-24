@@ -1,9 +1,9 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import { HomePage } from '../pages'
-import { LinkNav, Toast } from '../containers'
+import { Toast } from '../containers'
 import { useSystemDispatch } from '../contexts'
 import { Confirm } from '../components'
+import Setting from './Setting'
 
 const Root: React.FC = () => {
   const dispatch = useSystemDispatch()
@@ -15,11 +15,9 @@ const Root: React.FC = () => {
     <div className="app" onClick={onAppClick}>
       <Toast />
       <Confirm />
-      <h1 className="header-title">설정</h1>
       <BrowserRouter>
-        <LinkNav />
         <Switch>
-          <Route path="/" component={HomePage} />
+          <Route path="/" component={Setting} />
         </Switch>
       </BrowserRouter>
     </div>

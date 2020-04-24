@@ -11,6 +11,8 @@
     }
 
     &.on {
+      border-bottom: ratio(4) solid #3e3e3e;
+
       a {
         @include font(ratio(20), 700, #3e3e3e);
       }
@@ -34,6 +36,15 @@
 
         &:hover {
           @include font(20px, 600, #3e3e3e);
+        }
+      }
+
+      &.on {
+        border-bottom-width: 4px;
+
+        a {
+          font-size: 20px;
+          font-weight: 700;
         }
       }
     }
