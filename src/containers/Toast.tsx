@@ -1,48 +1,27 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { ToastStoreState } from '../types'
 import { removeToast } from '../reducers/Toast'
-import { Maybe } from '../components'
+import { Maybe, ToastListItem } from '../components'
 
 interface TypeHooks {
   Toast: ToastStoreState
 }
 
 const Toast: React.FC = () => {
-  const { view, type, message } = useSelector(({ Toast }: TypeHooks) => Toast)
+  const { list } = useSelector(({ Toast }: TypeHooks) => Toast)
   const dispatch = useDispatch()
-  const [on, setOn] = useState('')
-
-  useEffect(() => {
-    let timer
-
-    if (view) {
-      clearTimeout(timer)
-
-      setOn('on')
-
-      timer = setTimeout(() => {
-        console.log(on)
-        setOn('')
-        dispatch(removeToast())
-      }, 3000)
-    }
-  })
-
-  if (view) {
-    // let timer
-    // if (!timer) {
-    //   timer = setTimeout(() => {
-    //     dispatch(removeToast())
-    //   }, 3000)
-    // }
+  const onClose = (id: number): void => {
+    dispatch(removeToast(id))
   }
 
   return (
-    <div className={`toast-list ${on}`}>
-      <Maybe if={view}>
-        <div className={`toast-item ${type}`}>{message}</div>
-      </Maybe>
+    <div className={`toast-list ${'on'}`}>
+      {list.map((item) => (
+        <Maybe if={item.view} key={item.id}>
+          <ToastListItem onClose={onClose} item={item} />
+        </Maybe>
+      ))}
     </div>
   )
 }

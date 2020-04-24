@@ -21,8 +21,16 @@ export interface AddressStoreState {
   default: number
 }
 
-export interface ToastStoreState {
+export interface TypeToast {
   message: string
   view: boolean
   type: string
+}
+
+export interface ToastItem extends TypeToast {
+  id: number
+}
+
+export interface ToastStoreState {
+  list: ToastItem[]
 }

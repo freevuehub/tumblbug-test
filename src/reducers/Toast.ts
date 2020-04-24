@@ -1,23 +1,22 @@
-import { ToastStoreState } from '../types'
+import { ToastStoreState, TypeToast } from '../types'
 
 const InitializeState: ToastStoreState = {
-  message: '',
-  view: false,
-  type: '',
+  list: [],
 }
 const ADD_TOAST = '@command/add/toast' as const
 const REMOVE_TOAST = '@command/remove/toast' as const
 
-export const addToast = (payload: ToastStoreState) => {
+export const addToast = (payload: TypeToast) => {
   return {
     type: ADD_TOAST,
     payload,
   }
 }
 
-export const removeToast = () => {
+export const removeToast = (payload: number) => {
   return {
     type: REMOVE_TOAST,
+    payload,
   }
 }
 
@@ -30,12 +29,23 @@ export default function ToastReducer(
   switch (action.type) {
     case ADD_TOAST:
       return {
-        ...action.payload,
+        list: [
+          {
+            ...action.payload,
+            id: state.list.length ? Math.max(...state.list.map((item) => item.id)) + 1 : 1,
+          },
+          ...state.list,
+        ],
       }
     case REMOVE_TOAST:
+      console.log(state.list.slice(1))
       return {
         ...state,
-        view: false,
+        list: state.list.map((item) =>
+          item.id === action.payload ? { ...item, view: false } : item,
+        ),
+        // .slice(1),
+        // [...state.list.slice(0, action.payload), ...state.list.slice(action.payload + 1)],
       }
     default:
       return Object.assign({}, state)
