@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { changeDefault } from '../reducers/Address'
+import { changeDefault, removeAddress } from '../reducers/Address'
 import { addToast } from '../reducers/Toast'
 import { useSystemState, useSystemDispatch } from '../contexts'
 import { AddressStoreState, AddressItem } from '../types'
@@ -64,6 +64,7 @@ const AddressList: React.FC = () => {
 
   useEffect(() => {
     if (confirmInfo.confirm) {
+      dispatch(removeAddress(id))
       systemDispatch({
         type: 'CONFIRM_UPDATE',
         payload: {
@@ -71,6 +72,13 @@ const AddressList: React.FC = () => {
           confirm: false,
         },
       })
+      dispatch(
+        addToast({
+          text: '삭제되었습니다.',
+          view: true,
+          type: 'sucess',
+        }),
+      )
     }
   })
 
