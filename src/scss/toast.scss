@@ -17,4 +17,16 @@
       background-color: rgb(124, 216, 187);
     }
   }
+
+  @media screen and (min-width: 600px) {
+    padding: 0;
+    display: flex;
+
+    .toast-item {
+      font-size: 16px;
+      padding: 10px;
+      border-radius: 8px;
+      margin: 8px 8px 0 auto;
+    }
+  }
 }

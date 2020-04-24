@@ -26,8 +26,7 @@
   @import "./nav.scss";
 
   .container {
-    padding-top: ratio(40);
-    padding-bottom: ratio(20);
+    padding: ratio(40) 0 ratio(20);
     flex: 1;
     overflow: auto;
     position: relative;
@@ -48,6 +47,18 @@
 
           margin-left: auto;
           text-decoration: underline;
+        }
+
+        @media screen and (min-width: 600px) {
+          padding: 0 40px;
+
+          h2 {
+            font-size: 20px;
+          }
+
+          button {
+            font-size: 16px;
+          }
         }
       }
 
@@ -151,9 +162,9 @@
         }
       }
     }
-  }
 
-  @media screen and (min-width: 600px) {
-    padding-top: 50px;
+    @media screen and (min-width: 600px) {
+      padding: 50px 0 20px;
+    }
   }
 }

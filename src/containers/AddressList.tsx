@@ -19,15 +19,23 @@ const AddressList: React.FC = () => {
       const [defaultItem] = Address.addresses.filter(
         (item: AddressItem) => item.id === Address.default,
       )
-      const idx: number = Address.addresses.indexOf(defaultItem)
 
-      return {
-        list: [
-          defaultItem,
-          ...Address.addresses.slice(0, idx),
-          ...Address.addresses.slice(idx + 1),
-        ],
-        defaultId: Address.default,
+      if (defaultItem) {
+        const idx: number = Address.addresses.indexOf(defaultItem)
+
+        return {
+          list: [
+            defaultItem,
+            ...Address.addresses.slice(0, idx),
+            ...Address.addresses.slice(idx + 1),
+          ],
+          defaultId: Address.default,
+        }
+      } else {
+        return {
+          list: Address.addresses,
+          defaultId: Address.default,
+        }
       }
     } else {
       return {
