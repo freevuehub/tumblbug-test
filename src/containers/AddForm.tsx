@@ -3,7 +3,11 @@ import { useDispatch } from 'react-redux'
 import { addAddress } from '../reducers/Address'
 import { TextInput, CheckBox } from '../components'
 
-const AddForm: React.FC = () => {
+interface TypeProps {
+  onClose: Function
+}
+
+const AddForm: React.FC<TypeProps> = (props: TypeProps) => {
   const dispatch = useDispatch()
 
   const [name, setName] = useState('')
@@ -25,7 +29,7 @@ const AddForm: React.FC = () => {
       ),
     )
 
-    console.log(name, postnumber, address, check)
+    props.onClose(event)
   }
 
   return (

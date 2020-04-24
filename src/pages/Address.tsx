@@ -52,7 +52,9 @@ class Address extends React.PureComponent<TypeProps, TypeState> {
               <AddHeader
                 onClose={(event: React.MouseEvent): void => this.onAddressAddPop(event, false)}
               />
-              <AddForm />
+              <AddForm
+                onClose={(event: React.MouseEvent): void => this.onAddressAddPop(event, false)}
+              />
             </div>
           </div>
         </Maybe>
