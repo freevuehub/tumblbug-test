@@ -71,7 +71,7 @@ const AddressList: React.FC = () => {
     systemDispatch({ type: 'TOOLTIP_ON_OFF', payload: false })
     dispatch(
       addToast({
-        text: '기본 배송지가 변경되었습니다.',
+        message: '기본 배송지가 변경되었습니다.',
         view: true,
         type: 'sucess',
       }),
@@ -103,7 +103,7 @@ const AddressList: React.FC = () => {
       })
       dispatch(
         addToast({
-          text: '삭제되었습니다.',
+          message: '삭제되었습니다.',
           view: true,
           type: 'sucess',
         }),

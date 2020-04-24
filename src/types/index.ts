@@ -22,7 +22,7 @@ export interface AddressStoreState {
 }
 
 export interface ToastStoreState {
-  text: string
+  message: string
   view: boolean
   type: string
 }

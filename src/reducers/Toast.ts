@@ -1,7 +1,7 @@
 import { ToastStoreState } from '../types'
 
 const InitializeState: ToastStoreState = {
-  text: '',
+  message: '',
   view: false,
   type: '',
 }

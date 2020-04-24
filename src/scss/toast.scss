@@ -8,6 +8,8 @@
   .toast-item {
     @include font(ratio(16), 600, #fff);
 
+    transform: translate(0, -100%);
+    transition: all 0.15s;
     padding: ratio(10);
     margin-top: ratio(8);
     border-radius: ratio(8);
@@ -18,11 +20,19 @@
     }
   }
 
+  &.on {
+    .toast-item {
+      transform: translate(0);
+    }
+  }
+
   @media screen and (min-width: $pad) {
     padding: 0;
     display: flex;
 
     .toast-item {
+      width: 300px;
+      transform: translate(100%, 0);
       font-size: 16px;
       padding: 10px;
       border-radius: 8px;

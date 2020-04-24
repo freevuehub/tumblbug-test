@@ -31,7 +31,7 @@ const AddForm: React.FC<TypeProps> = (props: TypeProps) => {
     )
     dispatch(
       addToast({
-        text: '추가되었습니다.',
+        message: '추가되었습니다.',
         view: true,
         type: 'sucess',
       }),

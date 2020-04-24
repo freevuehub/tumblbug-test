@@ -1,11 +1,15 @@
 .add-address-pop {
   position: fixed;
   left: 0;
-  top: 0;
+  top: 100%;
   right: 0;
-  bottom: 0;
+  height: 100%;
   z-index: 20;
   transition: top .3s;
+
+  &.on {
+    top: 0;
+  }
 
   .wrap {
     background-color: #f0f0f2;

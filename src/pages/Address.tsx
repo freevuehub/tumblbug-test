@@ -49,7 +49,7 @@ class Address extends React.PureComponent<TypeProps, TypeState> {
           <AddressNotice />
         </div>
         <Maybe if={this.state.popView}>
-          <div className="add-address-pop">
+          <div className={`add-address-pop ${this.state.popView ? 'on' : ''}`}>
             <div className="wrap">
               <AddHeader
                 onClose={(event: React.MouseEvent): void => this.onAddressAddPop(event, false)}
