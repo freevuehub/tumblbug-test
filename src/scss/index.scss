@@ -2,6 +2,7 @@
 @import "./tool.scss";
 @import "./common.scss";
 @import "./toast.scss";
+@import "./add-pop.scss";
 
 .app {
   background-color: #f0f0f2;
@@ -16,7 +17,7 @@
 
     padding-left: ratio(28);
 
-    @media screen and (min-width: 600px) {
+    @media screen and (min-width: $pad) {
       @include font(36px, 700, #000);
 
       padding-left: 42px;
@@ -49,7 +50,7 @@
           text-decoration: underline;
         }
 
-        @media screen and (min-width: 600px) {
+        @media screen and (min-width: $pad) {
           padding: 0 40px;
 
           h2 {
@@ -71,6 +72,13 @@
         display: block;
         margin: ratio(40) auto;
         text-decoration: underline;
+
+        @media screen and (min-width: $pad) {
+          @include font(16px, 400, #252525);
+
+          text-decoration: none;
+          margin: 20px auto;
+        }
       }
 
       .notice {
@@ -96,74 +104,32 @@
             text-decoration: underline;
           }
         }
-      }
-    }
 
-    .add-address-pop {
-      position: fixed;
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 20;
-      transition: top .3s;
+        @media screen and (min-width: $pad) {
+          border-radius: 8px;
+          margin: 20px 40px 0;
+          padding: 20px;
 
-      .wrap {
-        background-color: #f0f0f2;
-        padding-top: ratio(30);
-        width: 100%;
-        height: 100%;
-
-        .header {
-          padding: 0 ratio(20);
-          display: flex;
-          align-items: flex-start;
-          margin-bottom: ratio(60);
-
-          h1 {
-            @include font(ratio(20), 700, #3d3d3d);
+          h4 {
+            font-size: 17px;
+            margin-bottom: 14px;
           }
 
-          button {
-            @include font(ratio(20), 700, #3d3d3d);
 
-            display: block;
-            margin-left: auto;
-          }
-        }
+          p {
+            font-size: 13px;
+            line-height: 20px;
 
-        .content {
-          padding: 0 ratio(20);
-
-          .form {
-            form {
-              .form-item {
-                margin-top: ratio(50);
-
-                &.check {
-                  margin-top: ratio(34);
-                  padding: 0 ratio(6);
-                }
-              }
-
-              button {
-                @include font(ratio(14), 600, #fff);
-
-                margin-top: ratio(60);
-                display: block;
-                width: 100%;
-                height: ratio(48);
-                border-radius: ratio(10);
-                background: linear-gradient(145deg, #fe6a65, #d55955);
-                box-shadow: 3px 3px 5px #ccccce, -3px -3px 5px #ffffff;
-              }
+            a {
+              margin-left: 5px;
+              text-decoration: underline;
             }
           }
         }
       }
     }
 
-    @media screen and (min-width: 600px) {
+    @media screen and (min-width: $pad) {
       padding: 50px 0 20px;
     }
   }

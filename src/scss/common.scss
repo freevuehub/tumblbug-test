@@ -12,6 +12,16 @@
     width: 100%;
     display: block;
   }
+
+  @media screen and (min-width: $pad) {
+    border-radius: 10px;
+    padding: 13px 14px;
+    height: 42px;
+
+    input {
+      font-size: 14px;
+    }
+  }
 }
 
 .check-box {
@@ -37,6 +47,24 @@
     @include font(ratio(12), 400, #3d3d3d);
 
     margin-left: ratio(8);
+  }
+
+  @media screen and (min-width: $pad) {
+    input {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+
+      &:checked {
+        border-radius: 6px;
+        border-width: 2px;
+      }
+    }
+
+    label {
+      font-size: 14px;
+      margin-left: 8px;
+    }
   }
 }
 
@@ -81,6 +109,33 @@
         &:first-child {
           color: #ed635e;
           border-right: 1px solid #979797;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: $pad) {
+    justify-content: center;
+
+    .wrap {
+      margin: 0;
+      width: 312px;
+      border-radius: 6px;
+      box-shadow: 1px 3px 5px 0 rgba(47, 46, 46, 0.5);
+
+      .description {
+        padding: 47px 0;
+
+        p {
+          font-size: 18px;
+          text-align: center;
+        }
+      }
+
+      .remote {
+        button {
+          font-size: 18px;
+          height: 65px;
         }
       }
     }

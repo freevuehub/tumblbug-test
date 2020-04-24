@@ -52,7 +52,7 @@
     }
   }
 
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: $pad) {
     li {
       margin: 20px 40px 30px;
       padding: 20px;
