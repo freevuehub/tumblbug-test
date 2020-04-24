@@ -82,8 +82,6 @@ export default function Address(
         ...buildAddress(state.addresses, action.payload),
       }
     case REMOVE_ADDRESS:
-      console.log()
-
       return {
         ...state,
         addresses: [
