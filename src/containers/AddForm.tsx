@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addAddress } from '../reducers/Address'
+import { addToast } from '../reducers/Toast'
 import { TextInput, CheckBox } from '../components'
 
 interface TypeProps {
@@ -27,6 +28,13 @@ const AddForm: React.FC<TypeProps> = (props: TypeProps) => {
         },
         check,
       ),
+    )
+    dispatch(
+      addToast({
+        text: '추가되었습니다.',
+        view: true,
+        type: 'sucess',
+      }),
     )
 
     props.onClose(event)
