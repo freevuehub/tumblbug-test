@@ -14,7 +14,7 @@ export interface TypeState {
 export const SystemStateContext = createContext<TypeState | undefined>(undefined)
 
 type Action =
-  | { type: 'CONFIRM_ON_OFF'; payload: TypeConfirm }
+  | { type: 'CONFIRM_UPDATE'; payload: TypeConfirm }
   | { type: 'TOOLTIP_ON_OFF'; payload: boolean }
 
 type TypeAction = Dispatch<Action>
@@ -23,7 +23,7 @@ export const SystemActionContext = createContext<TypeAction | undefined>(undefin
 
 function SystemReducer(state: TypeState, action: Action): TypeState {
   switch (action.type) {
-    case 'CONFIRM_ON_OFF':
+    case 'CONFIRM_UPDATE':
       return {
         ...state,
         confirmInfo: action.payload,

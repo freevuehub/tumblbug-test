@@ -5,25 +5,28 @@ import { useSystemState, useSystemDispatch } from '../contexts'
 const Confirm: React.FC = () => {
   const { confirmInfo } = useSystemState()
   const dispatch = useSystemDispatch()
-  const onClose = (): void => {
+  const onClose = (event: React.MouseEvent): void => {
+    event.stopPropagation()
+
     dispatch({
-      type: 'CONFIRM_ON_OFF',
+      type: 'CONFIRM_UPDATE',
       payload: {
         ...confirmInfo,
         view: false,
       },
     })
   }
-  const onConfirm = (): void => {
-    dispatch({
-      type: 'CONFIRM_ON_OFF',
+  const onConfirm = async (event: React.MouseEvent): Promise<void> => {
+    event.stopPropagation()
+
+    await dispatch({
+      type: 'CONFIRM_UPDATE',
       payload: {
         ...confirmInfo,
         confirm: true,
+        view: false,
       },
     })
-
-    onClose()
   }
 
   return (

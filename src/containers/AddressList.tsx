@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { changeDefault } from '../reducers/Address'
 import { addToast } from '../reducers/Toast'
@@ -52,7 +52,7 @@ const AddressList: React.FC = () => {
     event.preventDefault()
 
     systemDispatch({
-      type: 'CONFIRM_ON_OFF',
+      type: 'CONFIRM_UPDATE',
       payload: {
         ...confirmInfo,
         text: '정말 삭제하시겠습니까?',
@@ -61,6 +61,18 @@ const AddressList: React.FC = () => {
       },
     })
   }
+
+  useEffect(() => {
+    if (confirmInfo.confirm) {
+      systemDispatch({
+        type: 'CONFIRM_UPDATE',
+        payload: {
+          ...confirmInfo,
+          confirm: false,
+        },
+      })
+    }
+  })
 
   return (
     <>
