@@ -14,8 +14,6 @@ interface TypeProps {
 const LinkNav: React.FC<TypeProps> = (props: TypeProps) => {
   const { list } = useSelector(({ Nav }: TypeHooks) => Nav)
 
-  console.log(props.pathname)
-
   return (
     <ul className="link-nav">
       {list.map((item: NavItem) => (
