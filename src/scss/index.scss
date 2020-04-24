@@ -45,6 +45,7 @@
         button {
           @include font(ratio(16), 400, #4ea3f8);
 
+          cursor: pointer;
           margin-left: auto;
           text-decoration: underline;
         }
@@ -73,6 +74,7 @@
       .more-btn {
         @include font(ratio(15), 600, #4ea3f8);
 
+        cursor: pointer;
         display: block;
         margin: ratio(40) auto;
         text-decoration: underline;
