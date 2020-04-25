@@ -31,12 +31,12 @@ const Maybe: React.FC<TypeProps> = (props: TypeProps) => {
   if (props.animation) {
     return view ? (
       <>
-        {React.Children.map(props.children, (item: any) =>
-          React.cloneElement(item, {
+        {React.Children.map(props.children, (item: any) => {
+          return React.cloneElement(item, {
             ...item.props,
             className: `${item.props.className} transition-${props.animation} ${on}`,
-          }),
-        )}
+          })
+        })}
       </>
     ) : (
       <></>

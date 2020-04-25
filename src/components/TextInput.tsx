@@ -1,24 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, forwardRef } from 'react'
 
 interface TypeProps {
-  type?: string
+  type?: string | 'text'
   placeholder?: string
   className?: string
   value?: string
   onChange: Function
   validation?: Function[]
-  hint: string[]
+  hint: string[] | ['']
 }
 
-const TextInput: React.FC<TypeProps> = (props: TypeProps) => {
+const TextInput = (props: TypeProps, ref: any) => {
   const [hint, setHint] = useState('')
   const [validation, setValidation] = useState(true)
+
   const onChange = (event: React.FormEvent): void => {
     const { value } = event.currentTarget as HTMLInputElement
 
     setValidation(
       !!props.validation?.every((item, idx) => {
-        setHint(props.hint[idx])
+        if (!item(value)) {
+          setHint(props.hint[idx])
+        }
 
         return item(value)
       }),
@@ -27,10 +30,23 @@ const TextInput: React.FC<TypeProps> = (props: TypeProps) => {
     props.onChange(value)
   }
 
+  // useEffect(() => {
+  //   setValidation(
+  //     !!props.validation?.every((item, idx) => {
+  //       if (!item(props.value)) {
+  //         setHint(props.hint[idx])
+  //       }
+
+  //       return item(props.value)
+  //     }),
+  //   )
+  // })
+
   return (
     <div className={`text-input ${props.className} ${validation ? '' : 'error hint-on'}`}>
       <div className="input-wrap">
         <input
+          ref={ref}
           type={props.type}
           placeholder={props.placeholder}
           value={props.value}
@@ -42,9 +58,6 @@ const TextInput: React.FC<TypeProps> = (props: TypeProps) => {
   )
 }
 
-TextInput.defaultProps = {
-  type: 'text',
-  hint: [''],
-}
+const BuildInput = forwardRef(TextInput)
 
-export default TextInput
+export default BuildInput

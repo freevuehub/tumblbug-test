@@ -55,7 +55,7 @@ export function SystemProvider(props: { children: React.ReactNode }): React.Reac
   )
 }
 
-export function useSystemState() {
+export function useSystemState(): TypeState {
   const state = useContext(SystemStateContext)
 
   if (!state) {

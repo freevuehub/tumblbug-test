@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-// import { useSystemState, useSystemDispatch } from '../contexts'
 import { addAddress } from '../reducers/Address'
 import { addToast } from '../reducers/Toast'
 import { TextInput, CheckBox } from '../components'
@@ -9,8 +8,35 @@ interface TypeProps {
   onClose: Function
 }
 
+interface TypeFormProps {
+  onSubmit: Function
+  children: React.ReactNode
+}
+
+const Form: React.FC<TypeFormProps> = (props: TypeFormProps) => {
+  const onSubmit = (event: React.FormEvent): void => {
+    event.preventDefault()
+
+    React.Children.forEach(props.children, (child: any) => {
+      if (child.ref) {
+        child.ref.current.onchange = (event: React.FormEvent): void => {
+          console.log(event)
+        }
+        child.ref.current.value = child.props.value
+        child.props.onChange(child.props.value)
+      }
+    })
+
+    props.onSubmit()
+  }
+
+  return <form onSubmit={onSubmit}>{props.children}</form>
+}
+
 const AddForm: React.FC<TypeProps> = (props: TypeProps) => {
   const dispatch = useDispatch()
+
+  const input = React.useRef<HTMLInputElement>(null)
 
   const [formData, setData] = useState({
     name: '',
@@ -22,25 +48,23 @@ const AddForm: React.FC<TypeProps> = (props: TypeProps) => {
   const required = (value: string | number): boolean => !!value
   const max25 = (value: string | number): boolean => `${value}`.length < 25
 
-  const onSubimt = (event: React.FormEvent): void => {
-    event.preventDefault()
-
-    dispatch(addAddress(formData, check))
-    dispatch(
-      addToast({
-        message: '추가되었습니다.',
-        view: true,
-        type: 'sucess',
-      }),
-    )
-
-    props.onClose(event)
+  const onSubmit = (): void => {
+    // dispatch(addAddress(formData, check))
+    // dispatch(
+    //   addToast({
+    //     message: '추가되었습니다.',
+    //     view: true,
+    //     type: 'sucess',
+    //   }),
+    // )
+    // props.onClose(event)
   }
 
   return (
     <div className="form">
-      <form onSubmit={onSubimt}>
+      <Form onSubmit={onSubmit}>
         <TextInput
+          ref={input}
           className="form-item"
           placeholder="받는 사람"
           value={formData.name}
@@ -51,6 +75,7 @@ const AddForm: React.FC<TypeProps> = (props: TypeProps) => {
           hint={['필수 입력값입니다.']}
         />
         <TextInput
+          ref={input}
           type="number"
           className="form-item"
           placeholder="우편번호"
@@ -62,6 +87,7 @@ const AddForm: React.FC<TypeProps> = (props: TypeProps) => {
           hint={['필수 입력값입니다.']}
         />
         <TextInput
+          ref={input}
           className="form-item"
           placeholder="주소"
           value={formData.address}
@@ -78,7 +104,7 @@ const AddForm: React.FC<TypeProps> = (props: TypeProps) => {
           onChange={(value: boolean): void => setCheck(value)}
         />
         <button>등록 완료</button>
-      </form>
+      </Form>
     </div>
   )
 }
