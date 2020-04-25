@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 interface TypeProps {
   children: React.ReactNode
@@ -6,60 +6,44 @@ interface TypeProps {
   animation?: string
 }
 
-class Maybe extends React.PureComponent<TypeProps> {
-  state = {
-    view: false,
-    classNames: '',
-  }
+const Maybe: React.FC<TypeProps> = (props: TypeProps) => {
+  const [view, setView] = useState(false)
+  const [on, setOn] = useState('')
 
-  componentDidMount(): void {
-    this.setState({ classNames: 'on' })
-  }
+  useEffect(() => {
+    if (props.animation && props.if) {
+      setView(props.if)
 
-  componentDidUpdate(): void {
-    if (this.props.animation) {
-      this.setState({ classNames: this.props.if ? 'on' : '' })
+      setTimeout(() => {
+        setOn('on')
+      }, 150)
     }
+
+    if (!!on && !props.if) {
+      setOn('')
+
+      setTimeout(() => {
+        setView(props.if)
+      }, 150)
+    }
+  })
+
+  if (props.animation) {
+    return view ? (
+      <>
+        {React.Children.map(props.children, (item: any) =>
+          React.cloneElement(item, {
+            ...item.props,
+            className: `${item.props.className} transition-${props.animation} ${on}`,
+          }),
+        )}
+      </>
+    ) : (
+      <></>
+    )
   }
 
-  render(): React.ReactElement {
-    return this.props.if ? <>{this.props.children}</> : <></>
-    // return (
-    //   <>
-    //     {this.props.if ? (
-    //       React.Children.map(this.props.children, (item: any) =>
-    //         this.props.animation
-    //           ? React.cloneElement(item, {
-    //               ...item.props,
-    //               className: `${item.props.className} transirion-${this.props.animation} ${this.state.classNames}`,
-    //             })
-    //           : item,
-    //       )
-    //     ) : (
-    //       <></>
-    //     )}
-    //   </>
-    // )
-  }
+  return props.if ? <>{props.children}</> : <></>
 }
-
-// const Maybe: React.FC<TypeProps> = (props: TypeProps) => {
-//   return (
-//     <>
-//       {props.if ? (
-//         React.Children.map(props.children, (item: any) =>
-//           props.animation
-//             ? React.cloneElement(item, {
-//                 ...item.props,
-//                 className: `${item.props.className} transirion-${props.animation}`,
-//               })
-//             : item,
-//         )
-//       ) : (
-//         <></>
-//       )}
-//     </>
-//   )
-// }
 
 export default Maybe

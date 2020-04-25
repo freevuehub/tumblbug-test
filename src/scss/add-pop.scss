@@ -5,7 +5,7 @@
   right: 0;
   height: 100%;
   z-index: 20;
-  transition: top .3s;
+  transition: top .15s;
 
   &.on {
     top: 0;
@@ -73,7 +73,7 @@
     opacity: 0;
     align-items: center;
     justify-content: center;
-    transition: opacity .3s;
+    transition: opacity .15s;
 
     &.on {
       opacity: 1;
