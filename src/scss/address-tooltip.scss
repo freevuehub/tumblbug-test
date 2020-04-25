@@ -6,6 +6,12 @@
   box-shadow: 5px 5px 10px #ccccce, -5px -5px 10px #ffffff;
   z-index: 20;
   overflow: hidden;
+  opacity: 0;
+  transition: opacity .15s;
+
+  &.on {
+    opacity: 1;
+  }
 
   button {
     @include font(ratio(12), 400, #4ea3f8);

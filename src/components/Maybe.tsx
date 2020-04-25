@@ -16,7 +16,7 @@ const Maybe: React.FC<TypeProps> = (props: TypeProps) => {
 
       setTimeout(() => {
         setOn('on')
-      }, 150)
+      }, 100)
     }
 
     if (!!on && !props.if) {

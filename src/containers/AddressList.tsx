@@ -58,10 +58,14 @@ const AddressList: React.FC = () => {
   const onItemClick = (event: React.MouseEvent, id: number): void => {
     event.stopPropagation()
 
-    const { offsetLeft, offsetTop } = event.target as HTMLElement
+    if (tooltipView) {
+      systemDispatch({ type: 'TOOLTIP_ON_OFF', payload: false })
+    } else {
+      const { offsetLeft, offsetTop } = event.target as HTMLElement
 
-    setId({ style: { left: offsetLeft, top: offsetTop }, id })
-    systemDispatch({ type: 'TOOLTIP_ON_OFF', payload: true })
+      setId({ style: { left: offsetLeft, top: offsetTop }, id })
+      systemDispatch({ type: 'TOOLTIP_ON_OFF', payload: true })
+    }
   }
   const onDefaultAddressChange = (event: React.MouseEvent): void => {
     event.preventDefault()
@@ -125,12 +129,10 @@ const AddressList: React.FC = () => {
           + 더 보기
         </button>
       </Maybe>
-      <Maybe if={tooltipView}>
-        <AddressTooltip
-          style={style}
-          onChange={onDefaultAddressChange}
-          onDelete={onAddressDelete}
-        />
+      <Maybe if={tooltipView} animation="fade">
+        <div style={style} className="address-tooltip">
+          <AddressTooltip onChange={onDefaultAddressChange} onDelete={onAddressDelete} />
+        </div>
       </Maybe>
     </>
   )
