@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { fetchAddress } from '../reducers/Address'
 import { loadAddress } from '../axios'
 import { AddressStoreState } from '../types'
-import { AddressList, AddPop } from '../containers'
-import { Maybe, AddressNotice } from '../components'
+import { AddressList, AddForm } from '../containers'
+import { Maybe, AddressNotice, AddHeader } from '../components'
 
 interface TypeAddress {
   Address: AddressStoreState
@@ -29,7 +29,7 @@ class Address extends React.PureComponent<TypeProps, TypeState> {
     fetchAddress(data)
   }
 
-  onAddressAddPop(event: React.MouseEvent, popView: boolean): void {
+  onAddPopPoen(event: React.MouseEvent, popView: boolean): void {
     event.preventDefault()
 
     this.setState({ popView })
@@ -42,7 +42,7 @@ class Address extends React.PureComponent<TypeProps, TypeState> {
           <div className="article">
             <div className="header">
               <h2>등록된 배송지</h2>
-              <button onClick={(event): void => this.onAddressAddPop(event, true)}>+ 추가</button>
+              <button onClick={(event): void => this.onAddPopPoen(event, true)}>+ 추가</button>
             </div>
             <AddressList />
           </div>
@@ -50,9 +50,14 @@ class Address extends React.PureComponent<TypeProps, TypeState> {
         </div>
         <Maybe if={this.state.popView} animation="pop">
           <div className="add-address-pop">
-            <AddPop
-              onClose={(event: React.MouseEvent): void => this.onAddressAddPop(event, false)}
-            />
+            <div className="wrap">
+              <AddHeader
+                onClose={(event: React.MouseEvent): void => this.onAddPopPoen(event, false)}
+              />
+              <AddForm
+                onClose={(event: React.MouseEvent): void => this.onAddPopPoen(event, false)}
+              />
+            </div>
           </div>
         </Maybe>
       </>
