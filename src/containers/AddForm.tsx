@@ -48,7 +48,8 @@ const AddForm: React.FC<TypeProps> = (props: TypeProps) => {
   const [check, setCheck] = useState(false)
 
   const required = (value: string | number): boolean => !!value
-  const max25 = (value: string | number): boolean => `${value}`.length < 25
+  const max6 = (value: string | number): boolean => `${value}`.length <= 6
+  const max25 = (value: string | number): boolean => `${value}`.length <= 25
 
   const onSubmit = (err: boolean): void => {
     if (err) {
@@ -90,8 +91,8 @@ const AddForm: React.FC<TypeProps> = (props: TypeProps) => {
           onChange={(value: string): void => {
             setData({ ...formData, postnumber: value })
           }}
-          validation={[required]}
-          hint={['필수 입력값입니다.']}
+          validation={[required, (val: string): boolean => val.length === 6]}
+          hint={['필수 입력값입니다.', '우편번호 형식이 아닙니다.']}
         />
         <TextInput
           ref={React.useRef<TypeInputRef>(null)}
