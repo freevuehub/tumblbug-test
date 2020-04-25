@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 interface TypeProps {
   type?: string
@@ -6,19 +6,29 @@ interface TypeProps {
   className?: string
   value?: string
   onChange: Function
-  error?: boolean
-  hint: string
+  validation?: Function[]
+  hint: string[]
 }
 
 const TextInput: React.FC<TypeProps> = (props: TypeProps) => {
+  const [hint, setHint] = useState('')
+  const [validation, setValidation] = useState(true)
   const onChange = (event: React.FormEvent): void => {
     const { value } = event.currentTarget as HTMLInputElement
+
+    setValidation(
+      !!props.validation?.every((item, idx) => {
+        setHint(props.hint[idx])
+
+        return item(value)
+      }),
+    )
 
     props.onChange(value)
   }
 
   return (
-    <div className={`text-input ${props.className} ${props.error ? 'error hint-on' : ''}`}>
+    <div className={`text-input ${props.className} ${validation ? '' : 'error hint-on'}`}>
       <div className="input-wrap">
         <input
           type={props.type}
@@ -27,14 +37,14 @@ const TextInput: React.FC<TypeProps> = (props: TypeProps) => {
           onChange={onChange}
         />
       </div>
-      <p className="hint">{props.hint}</p>
+      <p className="hint">{hint}</p>
     </div>
   )
 }
 
 TextInput.defaultProps = {
   type: 'text',
-  hint: '',
+  hint: [''],
 }
 
 export default TextInput

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
+// import { useSystemState, useSystemDispatch } from '../contexts'
 import { addAddress } from '../reducers/Address'
 import { addToast } from '../reducers/Toast'
 import { TextInput, CheckBox } from '../components'
@@ -11,20 +12,18 @@ interface TypeProps {
 const AddForm: React.FC<TypeProps> = (props: TypeProps) => {
   const dispatch = useDispatch()
 
+  const [formData, setData] = useState({
+    name: '',
+    postnumber: '',
+    address: '',
+  })
+  const [check, setCheck] = useState(false)
+
   const required = (value: string | number): boolean => !!value
   const max25 = (value: string | number): boolean => `${value}`.length < 25
 
-  const [formData, setData] = useState({ name: '', postnumber: '', address: '' })
-  const [check, setCheck] = useState(false)
-
-  const [nameVali, setNameVal] = useState(true)
-  const [numberVali, setNumberVal] = useState(true)
-  const [addressVali, setAddressVal] = useState(true)
-
   const onSubimt = (event: React.FormEvent): void => {
     event.preventDefault()
-
-    console.log(React)
 
     dispatch(addAddress(formData, check))
     dispatch(
@@ -48,7 +47,8 @@ const AddForm: React.FC<TypeProps> = (props: TypeProps) => {
           onChange={(value: string): void => {
             setData({ ...formData, name: value })
           }}
-          hint="필수 입력값입니다."
+          validation={[required]}
+          hint={['필수 입력값입니다.']}
         />
         <TextInput
           type="number"
@@ -58,7 +58,8 @@ const AddForm: React.FC<TypeProps> = (props: TypeProps) => {
           onChange={(value: string): void => {
             setData({ ...formData, postnumber: value })
           }}
-          hint="필수 입력값입니다."
+          validation={[required]}
+          hint={['필수 입력값입니다.']}
         />
         <TextInput
           className="form-item"
@@ -67,7 +68,8 @@ const AddForm: React.FC<TypeProps> = (props: TypeProps) => {
           onChange={(value: string): void => {
             setData({ ...formData, address: value })
           }}
-          hint="최대 입력값을 초과하였습니다."
+          validation={[required, max25]}
+          hint={['필수 입력값입니다.', '최대 입력값을 초과하였습니다.']}
         />
         <CheckBox
           className="form-item check"
