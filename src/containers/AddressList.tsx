@@ -55,15 +55,15 @@ const AddressList: React.FC = () => {
     style: { top: 0, left: 0 },
   })
 
-  const onItemClick = (event: React.MouseEvent, id: number): void => {
+  const onItemClick = (event: React.MouseEvent, itemId: number): void => {
     event.stopPropagation()
 
-    if (tooltipView) {
+    if (tooltipView && itemId === id) {
       systemDispatch({ type: 'TOOLTIP_ON_OFF', payload: false })
     } else {
       const { offsetLeft, offsetTop } = event.target as HTMLElement
 
-      setId({ style: { left: offsetLeft, top: offsetTop }, id })
+      setId({ style: { left: offsetLeft, top: offsetTop }, id: itemId })
       systemDispatch({ type: 'TOOLTIP_ON_OFF', payload: true })
     }
   }
