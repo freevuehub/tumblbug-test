@@ -29,9 +29,7 @@ class Address extends React.PureComponent<TypeProps, TypeState> {
     fetchAddress(data)
   }
 
-  onAddPopPoen(event: React.MouseEvent, popView: boolean): void {
-    event.preventDefault()
-
+  onAddPopPoen(popView: boolean): void {
     this.setState({ popView })
   }
 
@@ -42,7 +40,7 @@ class Address extends React.PureComponent<TypeProps, TypeState> {
           <div className="article">
             <div className="header">
               <h2>등록된 배송지</h2>
-              <button onClick={(event): void => this.onAddPopPoen(event, true)}>+ 추가</button>
+              <button onClick={(): void => this.onAddPopPoen(true)}>+ 추가</button>
             </div>
             <AddressList />
           </div>
@@ -51,12 +49,8 @@ class Address extends React.PureComponent<TypeProps, TypeState> {
         <Maybe if={this.state.popView} animation="pop">
           <div className="add-address-pop">
             <div className="wrap">
-              <AddHeader
-                onClose={(event: React.MouseEvent): void => this.onAddPopPoen(event, false)}
-              />
-              <AddForm
-                onClose={(event: React.MouseEvent): void => this.onAddPopPoen(event, false)}
-              />
+              <AddHeader onClose={(): void => this.onAddPopPoen(false)} />
+              <AddForm onClose={(): void => this.onAddPopPoen(false)} />
             </div>
           </div>
         </Maybe>

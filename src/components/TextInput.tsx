@@ -1,4 +1,4 @@
-import React, { useState, useEffect, forwardRef } from 'react'
+import React, { useState, useImperativeHandle, forwardRef, useRef } from 'react'
 
 interface TypeProps {
   type?: string | 'text'
@@ -11,42 +11,42 @@ interface TypeProps {
 }
 
 const TextInput = (props: TypeProps, ref: any) => {
+  const inputRef = useRef<HTMLInputElement>(null)
+
   const [hint, setHint] = useState('')
   const [validation, setValidation] = useState(true)
 
-  const onChange = (event: React.FormEvent): void => {
-    const { value } = event.currentTarget as HTMLInputElement
+  const allValid = () =>
+    props.validation?.every((valid, idx) => {
+      if (!valid(inputRef.current?.value)) {
+        setHint(props.hint[idx])
+      }
 
-    setValidation(
-      !!props.validation?.every((item, idx) => {
-        if (!item(value)) {
-          setHint(props.hint[idx])
-        }
+      return valid(inputRef.current?.value)
+    })
+  const onChange = (): void => {
+    const { value } = inputRef.current as HTMLInputElement
 
-        return item(value)
-      }),
-    )
+    setValidation(!!allValid())
 
     props.onChange(value)
   }
 
-  // useEffect(() => {
-  //   setValidation(
-  //     !!props.validation?.every((item, idx) => {
-  //       if (!item(props.value)) {
-  //         setHint(props.hint[idx])
-  //       }
+  useImperativeHandle(ref, () => ({
+    focus: (): void => inputRef.current?.focus(),
+    valid: (): boolean => {
+      onChange()
 
-  //       return item(props.value)
-  //     }),
-  //   )
-  // })
+      return !!allValid()
+    },
+  }))
 
   return (
     <div className={`text-input ${props.className} ${validation ? '' : 'error hint-on'}`}>
+      {validation}
       <div className="input-wrap">
         <input
-          ref={ref}
+          ref={inputRef}
           type={props.type}
           placeholder={props.placeholder}
           value={props.value}
