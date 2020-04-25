@@ -6,12 +6,12 @@
     background-color: #f0f0f2;
     box-shadow: inset 3px 3px 5px #ccccce, inset -3px -3px 5px #ffffff;
     border-radius: ratio(10);
-    padding: ratio(10);
     height: ratio(42);
 
     input {
       @include font(ratio(12), 400);
 
+      padding: ratio(10);
       height: 100%;
       width: 100%;
       display: block;
@@ -69,10 +69,10 @@
 
     .input-wrap {
       border-radius: 10px;
-      padding: 13px 14px;
       height: 42px;
 
       input {
+        padding: 13px 14px;
         font-size: 14px;
       }
     }
