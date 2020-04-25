@@ -11,16 +11,22 @@ interface TypeProps {
 const AddForm: React.FC<TypeProps> = (props: TypeProps) => {
   const dispatch = useDispatch()
 
-  const [name, setName] = useState('')
-  const [postnumber, setNumber] = useState('')
-  const [address, setAddress] = useState('')
-  const [check, setCheck] = useState(false)
   const required = (value: string | number): boolean => !!value
+  const max25 = (value: string | number): boolean => `${value}`.length < 25
 
-  const onSubimt = (event: React.MouseEvent): void => {
+  const [formData, setData] = useState({ name: '', postnumber: '', address: '' })
+  const [check, setCheck] = useState(false)
+
+  const [nameVali, setNameVal] = useState(true)
+  const [numberVali, setNumberVal] = useState(true)
+  const [addressVali, setAddressVal] = useState(true)
+
+  const onSubimt = (event: React.FormEvent): void => {
     event.preventDefault()
 
-    dispatch(addAddress({ postnumber, name, address }, check))
+    console.log(React)
+
+    dispatch(addAddress(formData, check))
     dispatch(
       addToast({
         message: '추가되었습니다.',
@@ -34,26 +40,34 @@ const AddForm: React.FC<TypeProps> = (props: TypeProps) => {
 
   return (
     <div className="form">
-      <form>
+      <form onSubmit={onSubimt}>
         <TextInput
           className="form-item"
           placeholder="받는 사람"
-          value={name}
-          onChange={(value: string): void => setName(value)}
+          value={formData.name}
+          onChange={(value: string): void => {
+            setData({ ...formData, name: value })
+          }}
+          hint="필수 입력값입니다."
         />
         <TextInput
           type="number"
           className="form-item"
           placeholder="우편번호"
-          value={postnumber}
-          onChange={(value: string): void => setNumber(value)}
+          value={formData.postnumber}
+          onChange={(value: string): void => {
+            setData({ ...formData, postnumber: value })
+          }}
+          hint="필수 입력값입니다."
         />
         <TextInput
           className="form-item"
           placeholder="주소"
-          value={address}
-          onChange={(value: string): void => setAddress(value)}
-          vali={[required]}
+          value={formData.address}
+          onChange={(value: string): void => {
+            setData({ ...formData, address: value })
+          }}
+          hint="최대 입력값을 초과하였습니다."
         />
         <CheckBox
           className="form-item check"
@@ -61,7 +75,7 @@ const AddForm: React.FC<TypeProps> = (props: TypeProps) => {
           value={check}
           onChange={(value: boolean): void => setCheck(value)}
         />
-        <button onClick={onSubimt}>등록 완료</button>
+        <button>등록 완료</button>
       </form>
     </div>
   )

@@ -6,17 +6,47 @@ interface TypeProps {
   onClose: Function
 }
 
-const AddPop: React.FC<TypeProps> = (props: TypeProps) => {
-  const [on, setOn] = useState('')
+// class AddPop extends React.PureComponent<TypeProps> {
+//   state = {
+//     on: '',
+//   }
 
-  useEffect(() => setOn('on'))
+//   componentDidMount(): void {
+//     this.setState({ on: 'on' })
+//   }
+
+//   onClose = (): void => {
+//     this.setState({ on: '' })
+//     setTimeout(() => {
+//       console.log('a')
+//       // props.onClose(event)
+//     }, 150)
+//   }
+
+//   render(): React.ReactElement {
+//     return (
+//       <div className={`add-address-pop ${this.state.on}`}>
+//         <div className="wrap">
+//           <AddHeader onClose={this.onClose} />
+//           <AddForm onClose={this.onClose} />
+//         </div>
+//       </div>
+//     )
+//   }
+// }
+
+const AddPop: React.FC<TypeProps> = (props: TypeProps) => {
+  // const [on, setOn] = useState('')
+  const onClose = (event: React.MouseEvent): void => {
+    props.onClose(event)
+  }
+
+  // useEffect(() => setOn('on'))
 
   return (
-    <div className={`add-address-pop ${on}`}>
-      <div className="wrap">
-        <AddHeader onClose={props.onClose} />
-        <AddForm onClose={props.onClose} />
-      </div>
+    <div className="wrap">
+      <AddHeader onClose={onClose} />
+      <AddForm onClose={onClose} />
     </div>
   )
 }

@@ -6,28 +6,35 @@ interface TypeProps {
   className?: string
   value?: string
   onChange: Function
-  error?: Function | boolean
-  vali?: [Function]
+  error?: boolean
+  hint: string
 }
 
 const TextInput: React.FC<TypeProps> = (props: TypeProps) => {
+  const onChange = (event: React.FormEvent): void => {
+    const { value } = event.currentTarget as HTMLInputElement
+
+    props.onChange(value)
+  }
+
   return (
-    <div className={`text-input ${props.className}`}>
+    <div className={`text-input ${props.className} ${props.error ? 'error hint-on' : ''}`}>
       <div className="input-wrap">
         <input
           type={props.type}
           placeholder={props.placeholder}
           value={props.value}
-          onChange={({ target }): void => props.onChange(target.value)}
+          onChange={onChange}
         />
       </div>
-      <p className="hint">필수 입력값입니다.</p>
+      <p className="hint">{props.hint}</p>
     </div>
   )
 }
 
 TextInput.defaultProps = {
   type: 'text',
+  hint: '',
 }
 
 export default TextInput

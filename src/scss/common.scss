@@ -1,5 +1,6 @@
 .text-input {
   position: relative;
+  padding-bottom: ratio(30);
 
   .input-wrap {
     background-color: #f0f0f2;
@@ -29,6 +30,20 @@
     height: 0;
     overflow: hidden;
     transition: height .3s;
+  }
+
+  .hint {
+    @include font(ratio(14));
+
+    top: ratio(53);
+    left: ratio(2);
+    line-height: ratio(20);
+  }
+
+  &.hint-on {
+    .hint {
+      height: ratio(20);
+    }
   }
 
   &.error {
