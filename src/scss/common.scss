@@ -1,25 +1,78 @@
 .text-input {
-  background-color: #f0f0f2;
-  box-shadow: inset 3px 3px 5px #ccccce, inset -3px -3px 5px #ffffff;
-  border-radius: ratio(10);
-  padding: ratio(10);
-  height: ratio(42);
+  position: relative;
 
-  input {
-    @include font(ratio(12), 400);
+  .input-wrap {
+    background-color: #f0f0f2;
+    box-shadow: inset 3px 3px 5px #ccccce, inset -3px -3px 5px #ffffff;
+    border-radius: ratio(10);
+    padding: ratio(10);
+    height: ratio(42);
 
-    height: 100%;
+    input {
+      @include font(ratio(12), 400);
+
+      height: 100%;
+      width: 100%;
+      display: block;
+
+      &::placeholder {
+        color: #adadad;
+      }
+    }
+  }
+
+  .hint {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    display: block;
+    height: 0;
+    overflow: hidden;
+    transition: height .3s;
+  }
+
+  &.error {
+    .input-wrap {
+      box-shadow: inset 3px 3px 5px #c95450, inset -3px -3px 5px #ff726c;
+
+      input {
+        color: #ed635e;
+
+        &::placeholder {
+          color: #ed635e;
+        }
+      }
+    }
+
+    .hint {
+      color: #ed635e;
+    }
   }
 
   @media screen and (min-width: $pad) {
-    border-radius: 10px;
-    padding: 13px 14px;
-    height: 42px;
+    padding-bottom: 30px;
 
-    input {
+    .input-wrap {
+      border-radius: 10px;
+      padding: 13px 14px;
+      height: 42px;
+
+      input {
+        font-size: 14px;
+      }
+    }
+
+    .hint {
+      top: 52px;
+      left: 2px;
       font-size: 14px;
+      line-height: 20px;
+    }
+
+    &.hint-on {
+      .hint {
+        height: 20px;
+      }
     }
   }
 }

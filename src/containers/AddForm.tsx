@@ -15,6 +15,7 @@ const AddForm: React.FC<TypeProps> = (props: TypeProps) => {
   const [postnumber, setNumber] = useState('')
   const [address, setAddress] = useState('')
   const [check, setCheck] = useState(false)
+  // const [nameVali, setNameVali] = useState(false)
 
   const onSubimt = (event: React.MouseEvent): void => {
     event.preventDefault()
