@@ -6,9 +6,16 @@ export interface TypeConfirm {
   confirm: boolean
 }
 
+export interface TypeForm {
+  name: string
+  postnumber: string
+  address: string
+}
+
 export interface TypeState {
   confirmInfo: TypeConfirm
   tooltipView: boolean
+  formData: TypeForm
 }
 
 export const SystemStateContext = createContext<TypeState | undefined>(undefined)
@@ -16,6 +23,7 @@ export const SystemStateContext = createContext<TypeState | undefined>(undefined
 type Action =
   | { type: 'CONFIRM_UPDATE'; payload: TypeConfirm }
   | { type: 'TOOLTIP_ON_OFF'; payload: boolean }
+  | { type: 'FORM_DATA_CHANGE'; payload: TypeForm }
 
 type TypeAction = Dispatch<Action>
 
@@ -33,6 +41,11 @@ function SystemReducer(state: TypeState, action: Action): TypeState {
         ...state,
         tooltipView: action.payload,
       }
+    case 'FORM_DATA_CHANGE':
+      return {
+        ...state,
+        formData: action.payload,
+      }
     default:
       throw new Error('존재하지 않는 액션입니다.')
   }
@@ -46,6 +59,11 @@ export function SystemProvider(props: { children: React.ReactNode }): React.Reac
       confirm: false,
     },
     tooltipView: false,
+    formData: {
+      name: '',
+      postnumber: '',
+      address: '',
+    },
   })
 
   return (
