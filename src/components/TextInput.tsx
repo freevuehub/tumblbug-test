@@ -7,6 +7,7 @@ interface TypeProps {
   value?: string
   onChange: Function
   error?: Function | boolean
+  vali?: [Function]
 }
 
 const TextInput: React.FC<TypeProps> = (props: TypeProps) => {

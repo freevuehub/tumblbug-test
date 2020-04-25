@@ -69,8 +69,15 @@
   @media screen and (min-width: $pad) {
     background-color: rgba(118, 118, 118, 0.8);
     display: flex;
+    top: 0;
+    opacity: 0;
     align-items: center;
     justify-content: center;
+    transition: opacity .3s;
+
+    &.on {
+      opacity: 1;
+    }
 
     .wrap {
       width: 510px;

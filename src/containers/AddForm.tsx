@@ -15,21 +15,12 @@ const AddForm: React.FC<TypeProps> = (props: TypeProps) => {
   const [postnumber, setNumber] = useState('')
   const [address, setAddress] = useState('')
   const [check, setCheck] = useState(false)
-  // const [nameVali, setNameVali] = useState(false)
+  const required = (value: string | number): boolean => !!value
 
   const onSubimt = (event: React.MouseEvent): void => {
     event.preventDefault()
 
-    dispatch(
-      addAddress(
-        {
-          postnumber,
-          name,
-          address,
-        },
-        check,
-      ),
-    )
+    dispatch(addAddress({ postnumber, name, address }, check))
     dispatch(
       addToast({
         message: '추가되었습니다.',
@@ -62,6 +53,7 @@ const AddForm: React.FC<TypeProps> = (props: TypeProps) => {
           placeholder="주소"
           value={address}
           onChange={(value: string): void => setAddress(value)}
+          vali={[required]}
         />
         <CheckBox
           className="form-item check"

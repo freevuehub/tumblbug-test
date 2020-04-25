@@ -1,4 +1,5 @@
 export { default as LinkNav } from './LinkNav'
 export { default as AddressList } from './AddressList'
+export { default as AddPop } from './AddPop'
 export { default as AddForm } from './AddForm'
 export { default as Toast } from './Toast'
