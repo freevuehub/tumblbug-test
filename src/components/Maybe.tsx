@@ -10,20 +10,23 @@ const Maybe: React.FC<TypeProps> = (props: TypeProps) => {
   const [view, setView] = useState(false)
   const [on, setOn] = useState('')
 
+  const changeView = (value: boolean): void => setView(value)
+  const changeOn = (value: string): void => setOn(value)
+
   useEffect(() => {
     if (props.animation && props.if) {
-      setView(props.if)
+      changeView(props.if)
 
       setTimeout(() => {
-        setOn('on')
+        changeOn('on')
       }, 100)
     }
 
     if (!!on && !props.if) {
-      setOn('')
+      changeOn('')
 
       setTimeout(() => {
-        setView(props.if)
+        changeView(props.if)
       }, 150)
     }
   })
