@@ -48,7 +48,6 @@ const AddForm: React.FC<TypeProps> = (props: TypeProps) => {
   const [check, setCheck] = useState(false)
 
   const required = (value: string | number): boolean => !!value
-  const max6 = (value: string | number): boolean => `${value}`.length <= 6
   const max25 = (value: string | number): boolean => `${value}`.length <= 25
 
   const onSubmit = (err: boolean): void => {
