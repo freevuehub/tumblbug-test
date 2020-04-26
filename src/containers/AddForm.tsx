@@ -2,39 +2,14 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addAddress } from '../reducers/Address'
 import { addToast } from '../reducers/Toast'
-import { TextInput, CheckBox } from '../components'
+import { TextInput, CheckBox, Form } from '../components'
 
 interface TypeProps {
   onClose: Function
 }
 
-interface TypeFormProps {
-  onSubmit: Function
-  children: React.ReactNode
-}
-
 interface TypeInputRef extends HTMLInputElement {
   valid: Function
-}
-
-const Form: React.FC<TypeFormProps> = (props: TypeFormProps) => {
-  const onSubmit = (event: React.FormEvent): void => {
-    event.preventDefault()
-
-    const valids: boolean[] = []
-
-    React.Children.map(props.children, (child: any) => {
-      if (child.ref) {
-        valids.push(child.ref.current.valid())
-      }
-
-      return child
-    })
-
-    props.onSubmit(!valids.every((vali) => !!vali))
-  }
-
-  return <form onSubmit={onSubmit}>{props.children}</form>
 }
 
 const AddForm: React.FC<TypeProps> = (props: TypeProps) => {
