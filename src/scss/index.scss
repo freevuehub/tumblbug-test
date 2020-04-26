@@ -150,6 +150,7 @@
       overflow: hidden;
 
       .content {
+        max-width: 1600px;
         display: flex;
         height: 100%;
         flex-wrap: wrap;
@@ -158,11 +159,16 @@
         overflow: auto;
         position: relative;
         -webkit-overflow-scrolling: touch;
+        margin: 0 auto;
 
         .article {
           flex: 1;
         }
       }
     }
+  }
+
+  @media screen and (min-width: $pad) {
+    padding-top: 50px;
   }
 }
